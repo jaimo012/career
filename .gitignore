@@ -1,0 +1,11 @@
+# 로컬 개발/미리보기 설정
+.claude/
+
+# 에셋 원본 (배포본은 images/ 최적화본과 루트 PDF)
+docs/
+
+# OS·에디터 부산물
+Thumbs.db
+.DS_Store
+*.tmp
+*.tmp.jpg

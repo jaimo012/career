@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이재모 | AI 서비스 기획자 — 정책·기술·사업을 잇는 기획자</title>
+  <meta name="description" content="정책 기획의 논리, AI 연구개발의 기술 이해, 엔터프라이즈 B2B 사업개발의 시장 감각을 하나로 잇는 AI 서비스 기획자. 맨바닥에서 연간 80억 수주, 정부 R&D 13.4억 확보, LLM 서비스 직접 기획·개발." />
+  <meta name="author" content="이재모" />
+
+  <!-- Open Graph (링크 공유 미리보기) -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="이재모 | AI 서비스 기획자" />
+  <meta property="og:description" content="정책 기획 · AI 연구개발 · B2B 사업개발을 잇는 AI 서비스 기획자. 사이트 자체가 그 증거물." />
+  <meta property="og:image" content="images/profile_jaimo.jpg" />
+
+  <!-- favicon (이니셜, 외부 리소스 없이 인라인 SVG) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234F46E5'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='17' font-weight='700' fill='white' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E" />
+
+  <!-- 폰트: 외부 의존성은 CDN 2개뿐 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" />
+
+  <style>
+    /* ============================================================
+       디자인 토큰 (노션 기획서 §2 확정값) — 전 영역이 변수만 참조
+       ============================================================ */
+    :root {
+      /* 컬러 — 인디고는 화면의 5~10%(핵심 숫자·CTA)에만 */
+      --color-bg:         #FAFAF8;  /* 오프화이트 — 배경·여백 */
+      --color-surface:    #FFFFFF;  /* 카드 표면 */
+      --color-white:      #FFFFFF;  /* 강조색 위 흰 전경·흰 배경 */
+      --color-text:       #1A1A1A;  /* 차콜 — 본문·헤드라인 */
+      --color-muted:      #5B5B57;  /* 보조 텍스트 (대비 7:1 확보) */
+      --color-faint:      #8A8A85;  /* 캡션·연도 */
+      --color-line:       #E6E4DD;  /* 경계선 (오프화이트 톤) */
+      --color-line-soft:  #F0EEE8;  /* 옅은 구분선 */
+      --color-accent:     #4F46E5;  /* 인디고 — CTA·핵심 숫자 (강조 전용) */
+      --color-accent-dk:  #312E81;  /* 딥 인디고 — 소제목·라벨·푸터 배경 */
+      --color-accent-soft:rgba(79, 70, 229, 0.07);  /* 인디고 옅은 배경 */
+      --color-accent-line:rgba(79, 70, 229, 0.22);
+      --color-on-dark:    #EDECF7;  /* 딥인디고 위 본문 */
+      --color-on-dark-mut:#A9A7CE;  /* 딥인디고 위 보조 */
+
+      /* 타이포 */
+      --font-head: 'Pretendard', system-ui, sans-serif;
+      --font-body: 'Pretendard', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* 레이아웃 */
+      --container: 1060px;
+      --pad-x: clamp(1.25rem, 5vw, 2.5rem);
+      --header-h: 4rem;
+      --radius: 14px;
+      --radius-sm: 9px;
+      --shadow: 0 1px 2px rgba(26,26,26,.04), 0 8px 28px rgba(26,26,26,.06);
+      --shadow-hover: 0 2px 6px rgba(26,26,26,.06), 0 16px 44px rgba(49,46,129,.10);
+    }
+
+    /* ============================================================
+       리셋 & 기본
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 1rem); }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.2; letter-spacing: -0.02em; margin: 0; }
+    p { margin: 0; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    ul { margin: 0; padding: 0; list-style: none; }
+    :focus-visible { outline: 2.5px solid var(--color-accent); outline-offset: 3px; border-radius: 4px; }
+
+    .container { width: min(100% - 2.5rem, var(--container)); margin-inline: auto; }
+    .mono { font-family: var(--font-mono); }
+
+    /* 섹션 공통 */
+    .section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; }
+    .section--tight { padding: clamp(2.75rem, 7vw, 4.5rem) 0; }
+    .section__label {
+      font-family: var(--font-mono); font-size: .8rem; font-weight: 700;
+      letter-spacing: .14em; color: var(--color-accent-dk);
+      text-transform: uppercase; display: inline-flex; align-items: center; gap: .6rem;
+      margin-bottom: 1rem;
+    }
+    .section__label::before {
+      content: ""; width: 1.6rem; height: 2px; background: var(--color-accent); display: inline-block;
+    }
+    .section__title { font-size: clamp(1.6rem, 4.2vw, 2.4rem); font-weight: 800; }
+    .section__lead { color: var(--color-muted); margin-top: .9rem; max-width: 54ch; font-size: 1.02rem; }
+
+    /* ============================================================
+       1. 상단바 (sticky)
+       ============================================================ */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--header-h);
+      background: color-mix(in srgb, var(--color-bg) 86%, transparent);
+      backdrop-filter: saturate(1.4) blur(10px);
+      -webkit-backdrop-filter: saturate(1.4) blur(10px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .25s ease, box-shadow .25s ease;
+    }
+    .header.is-scrolled { border-bottom-color: var(--color-line); box-shadow: 0 4px 20px rgba(26,26,26,.04); }
+    .header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { font-family: var(--font-head); font-weight: 800; font-size: 1.18rem; letter-spacing: -0.02em; display: inline-flex; align-items: baseline; gap: .5rem; white-space: nowrap; }
+    .brand small { font-family: var(--font-mono); font-weight: 500; font-size: .68rem; color: var(--color-faint); letter-spacing: .02em; white-space: nowrap; }
+    .header__actions { display: flex; align-items: center; gap: .35rem; }
+    .iconbtn {
+      width: 2.4rem; height: 2.4rem; display: grid; place-items: center;
+      border-radius: 50%; color: var(--color-muted);
+      transition: background .18s ease, color .18s ease, transform .18s ease;
+    }
+    .iconbtn:hover { background: var(--color-accent-soft); color: var(--color-accent); transform: translateY(-1px); }
+    .iconbtn svg { width: 1.18rem; height: 1.18rem; }
+    .btn-pdf {
+      display: inline-flex; align-items: center; gap: .45rem;
+      margin-left: .35rem; padding: .5rem .9rem;
+      background: var(--color-accent); color: var(--color-white); font-weight: 700; font-size: .86rem;
+      border-radius: 999px; transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+      box-shadow: 0 4px 14px rgba(79,70,229,.28);
+    }
+    .btn-pdf:hover { background: var(--color-accent-dk); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(49,46,129,.32); }
+    .btn-pdf svg { width: 1rem; height: 1rem; }
+    .btn-pdf .btn-pdf__long { display: none; }
+    @media (min-width: 560px) { .btn-pdf .btn-pdf__long { display: inline; } }
+    @media (max-width: 520px) { .brand small { display: none; } }
+
+    /* ============================================================
+       2. 히어로
+       ============================================================ */
+    .hero { position: relative; padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(2.5rem, 6vw, 4rem); overflow: hidden; }
+    /* APM 2×2 매트릭스 정신을 은은한 그리드 모티프로 (전면 노출 X) */
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(var(--color-line-soft) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-line-soft) 1px, transparent 1px);
+      background-size: clamp(48px, 9vw, 84px) clamp(48px, 9vw, 84px);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 70% 30%, #000 0%, transparent 72%);
+              mask-image: radial-gradient(ellipse 80% 70% at 70% 30%, #000 0%, transparent 72%);
+      opacity: .8;
+    }
+    .hero__inner { position: relative; z-index: 1; display: grid; gap: clamp(2rem, 5vw, 3.5rem); align-items: center; }
+    .hero__eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--font-mono); font-size: .82rem; font-weight: 500; color: var(--color-accent-dk);
+      background: var(--color-accent-soft); border: 1px solid var(--color-accent-line);
+      padding: .35rem .8rem; border-radius: 999px; margin-bottom: 1.4rem;
+    }
+    .hero__eyebrow .dot { width: .45rem; height: .45rem; border-radius: 50%; background: var(--color-accent); }
+    .hero h1 { font-size: clamp(2.1rem, 6.4vw, 3.6rem); font-weight: 800; letter-spacing: -0.035em; }
+    .hero h1 .accent { color: var(--color-accent); }
+    .hero__role { display: block; font-size: clamp(1.05rem, 3vw, 1.4rem); font-weight: 700; color: var(--color-accent-dk); margin-top: .5rem; letter-spacing: -0.02em; }
+    .hero__philo {
+      margin-top: 1.6rem; padding-left: 1.1rem; border-left: 3px solid var(--color-accent);
+      font-size: clamp(1.02rem, 2.4vw, 1.22rem); font-weight: 600; color: var(--color-text); line-height: 1.5;
+    }
+    .hero__desc { margin-top: 1.4rem; color: var(--color-muted); max-width: 50ch; font-size: 1.02rem; }
+    .hero__cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .7rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.4rem;
+      border-radius: 999px; font-weight: 700; font-size: .95rem; cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .btn svg { width: 1.05rem; height: 1.05rem; }
+    .btn--primary { background: var(--color-accent); color: var(--color-white); box-shadow: 0 6px 18px rgba(79,70,229,.28); }
+    .btn--primary:hover { background: var(--color-accent-dk); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(49,46,129,.32); }
+    .btn--ghost { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-line); }
+    .btn--ghost:hover { border-color: var(--color-accent); color: var(--color-accent); transform: translateY(-2px); }
+
+    .hero__media { position: relative; justify-self: center; }
+    .hero__photo {
+      width: clamp(13rem, 40vw, 17.5rem); aspect-ratio: 4 / 5; object-fit: cover; object-position: center top;
+      border-radius: 20px; box-shadow: var(--shadow-hover);
+      border: 1px solid var(--color-line);
+    }
+    .hero__badge {
+      position: absolute; bottom: -.9rem; left: -.9rem;
+      background: var(--color-surface); border: 1px solid var(--color-line);
+      border-radius: 12px; padding: .65rem .9rem; box-shadow: var(--shadow);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .hero__badge .num { font-family: var(--font-mono); font-weight: 700; font-size: 1.5rem; color: var(--color-accent); line-height: 1; }
+    .hero__badge .lab { font-size: .72rem; color: var(--color-muted); line-height: 1.25; }
+
+    @media (min-width: 860px) {
+      .hero__inner { grid-template-columns: 1.35fr .85fr; }
+      .hero__media { justify-self: end; }
+    }
+
+    /* ============================================================
+       3. 성과 숫자
+       ============================================================ */
+    .metrics { background: var(--color-surface); border-block: 1px solid var(--color-line); }
+    .metrics__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--color-line); border: 1px solid var(--color-line); border-radius: var(--radius); overflow: hidden; }
+    .metric { background: var(--color-surface); padding: clamp(1.4rem, 4vw, 2.2rem); display: flex; flex-direction: column; gap: .35rem; }
+    .metric__val { font-family: var(--font-mono); font-weight: 700; font-size: clamp(2.4rem, 8vw, 3.6rem); line-height: 1; color: var(--color-accent); letter-spacing: -0.02em; }
+    .metric__val .unit { font-family: var(--font-head); font-size: .42em; color: var(--color-text); margin-left: .12em; font-weight: 800; }
+    .metric__name { font-weight: 700; font-size: 1rem; margin-top: .35rem; }
+    .metric__sub { font-size: .85rem; color: var(--color-faint); }
+    .metrics__strip { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; justify-content: center; color: var(--color-muted); font-size: .9rem; }
+    .metrics__strip span { display: inline-flex; align-items: center; gap: .45rem; }
+    .metrics__strip b { font-family: var(--font-mono); color: var(--color-accent-dk); font-weight: 700; }
+    @media (min-width: 720px) { .metrics__grid { grid-template-columns: repeat(4, 1fr); } }
+
+    /* ============================================================
+       4. 전환 서사 (화살표 플로우)
+       ============================================================ */
+    .journey__flow { margin-top: 2.4rem; display: grid; gap: .9rem; }
+    .stage {
+      position: relative; background: var(--color-surface); border: 1px solid var(--color-line);
+      border-radius: var(--radius); padding: 1.3rem 1.4rem;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .stage__no { font-family: var(--font-mono); font-size: .75rem; font-weight: 700; color: var(--color-faint); }
+    .stage__name { font-weight: 800; font-size: 1.12rem; margin-top: .15rem; display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; }
+    .stage__year { font-family: var(--font-mono); font-size: .72rem; color: var(--color-accent-dk); font-weight: 500; }
+    .stage__desc { color: var(--color-muted); font-size: .92rem; margin-top: .4rem; }
+    .stage--final { background: var(--color-accent-dk); border-color: var(--color-accent-dk); box-shadow: var(--shadow-hover); }
+    .stage--final .stage__no { color: var(--color-on-dark-mut); }
+    .stage--final .stage__name { color: var(--color-white); }
+    .stage--final .stage__year { color: var(--color-on-dark-mut); }
+    .stage--final .stage__desc { color: var(--color-on-dark); }
+    .stage--final .stage__name::after { content: "지금"; font-family: var(--font-mono); font-size: .62rem; font-weight: 700; background: var(--color-accent); color: var(--color-white); padding: .12rem .5rem; border-radius: 999px; letter-spacing: .05em; }
+    /* 연결 화살표 */
+    .stage:not(:last-child)::after {
+      content: ""; position: absolute; z-index: 2;
+      left: 50%; bottom: -.72rem; transform: translateX(-50%) rotate(45deg);
+      width: .7rem; height: .7rem; border-right: 2px solid var(--color-accent); border-bottom: 2px solid var(--color-accent);
+    }
+    @media (min-width: 880px) {
+      .journey__flow { grid-template-columns: repeat(4, 1fr); align-items: stretch; }
+      .stage { display: flex; flex-direction: column; }
+      .stage:not(:last-child)::after { left: auto; right: -.66rem; bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+    }
+
+    /* ============================================================
+       5. 대표 프로젝트 (아코디언)
+       ============================================================ */
+    .accordion { margin-top: 2.2rem; display: grid; gap: 1rem; }
+    .proj { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius); overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease; }
+    .proj.is-open { border-color: var(--color-accent-line); box-shadow: var(--shadow); }
+    .proj__head {
+      width: 100%; text-align: left; background: none; border: 0; cursor: pointer;
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .9rem 1rem;
+      padding: 1.25rem clamp(1.1rem, 3vw, 1.6rem); font-family: inherit;
+    }
+    .proj__no { font-family: var(--font-mono); font-weight: 700; font-size: .9rem; color: var(--color-accent); }
+    .proj__heading { display: flex; flex-direction: column; gap: .15rem; }
+    .proj__title { font-weight: 800; font-size: clamp(1.05rem, 2.6vw, 1.25rem); letter-spacing: -0.02em; }
+    .proj__tag { font-family: var(--font-mono); font-size: .73rem; color: var(--color-muted); font-weight: 500; }
+    .proj__chev { grid-column: 3; width: 2rem; height: 2rem; flex: none; border-radius: 50%; background: var(--color-accent-soft); color: var(--color-accent); display: grid; place-items: center; transition: transform .3s ease, background .2s ease; }
+    .proj__chev svg { width: 1.05rem; height: 1.05rem; }
+    .proj.is-open .proj__chev { transform: rotate(135deg); background: var(--color-accent); color: var(--color-white); }
+    /* grid 0fr→1fr 펼침 (정확한 높이 애니메이션) */
+    .proj__reveal { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+    .proj.is-open .proj__reveal { grid-template-rows: 1fr; }
+    .proj__bodywrap { overflow: hidden; }
+    .proj__body { padding: 0 clamp(1.1rem, 3vw, 1.6rem) 1.5rem; }
+    .proj__role { font-size: .85rem; color: var(--color-accent-dk); font-weight: 700; margin-bottom: 1rem; padding-top: .3rem; border-top: 1px dashed var(--color-line); }
+    .pac { display: grid; gap: .9rem; }
+    .pac__item { display: grid; grid-template-columns: auto 1fr; gap: .9rem; align-items: start; }
+    .pac__k { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; letter-spacing: .06em; color: var(--color-white); background: var(--color-accent-dk); padding: .22rem .55rem; border-radius: 6px; white-space: nowrap; margin-top: .1rem; }
+    .pac__item--result .pac__k { background: var(--color-accent); }
+    .pac__v { color: var(--color-muted); font-size: .96rem; }
+    .pac__v strong { color: var(--color-text); font-weight: 700; }
+    .pac__v .mono { color: var(--color-accent); font-weight: 700; }
+    .repo-link { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--font-mono); font-size: .85rem; color: var(--color-accent); font-weight: 500; margin-top: .2rem; border-bottom: 1px solid var(--color-accent-line); padding-bottom: 1px; }
+    .repo-link:hover { border-bottom-color: var(--color-accent); }
+    .repo-link svg { width: 1rem; height: 1rem; }
+    /* 자동화 7종 그리드 */
+    .autolist { display: grid; gap: .6rem; margin-top: .3rem; }
+    .autolist li { display: grid; grid-template-columns: 1fr auto; gap: .5rem 1rem; align-items: center; padding: .7rem .9rem; background: var(--color-bg); border: 1px solid var(--color-line); border-radius: var(--radius-sm); }
+    .autolist .a-name { font-weight: 700; font-size: .92rem; }
+    .autolist .a-stack { font-family: var(--font-mono); font-size: .68rem; color: var(--color-muted); background: var(--color-surface); border: 1px solid var(--color-line); padding: .15rem .45rem; border-radius: 5px; white-space: nowrap; }
+    @media (min-width: 680px) { .autolist { grid-template-columns: 1fr 1fr; } }
+
+    /* ============================================================
+       6. 경력
+       ============================================================ */
+    .career { margin-top: 2.2rem; position: relative; display: grid; gap: 1rem; }
+    .job { display: grid; grid-template-columns: auto 1fr; gap: 1rem 1.2rem; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius); padding: 1.3rem clamp(1.1rem, 3vw, 1.5rem); transition: box-shadow .2s ease, transform .2s ease; }
+    .job:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .job__logo { width: 3.2rem; height: 3.2rem; flex: none; border-radius: 12px; background: var(--color-white); border: 1px solid var(--color-line); display: grid; place-items: center; padding: .45rem; }
+    .job__logo img { max-height: 1.9rem; max-width: 2.3rem; width: auto; object-fit: contain; }
+    .job__main { min-width: 0; }
+    .job__top { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .7rem; }
+    .job__co { font-weight: 800; font-size: 1.08rem; letter-spacing: -0.02em; }
+    .job__role { color: var(--color-accent-dk); font-weight: 700; font-size: .95rem; }
+    .job__period { font-family: var(--font-mono); font-size: .76rem; color: var(--color-faint); margin-left: auto; white-space: nowrap; }
+    .job__desc { color: var(--color-muted); font-size: .94rem; margin-top: .5rem; }
+    .job__desc b { color: var(--color-text); }
+    .job__desc .mono { font-family: var(--font-mono); color: var(--color-accent); font-weight: 700; }
+    .job--lead { border-left: 3px solid var(--color-accent); }
+
+    /* ============================================================
+       7. 학력 · 수상 · 자격 · 연구 (컴팩트 그리드)
+       ============================================================ */
+    .cred-grid { margin-top: 2.2rem; display: grid; gap: 1.1rem; }
+    @media (min-width: 800px) { .cred-grid { grid-template-columns: 1fr 1fr; } .cred--awards { grid-column: 1 / -1; } }
+    .cred { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius); padding: 1.4rem clamp(1.1rem, 3vw, 1.5rem); }
+    .cred__h { font-family: var(--font-mono); font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-accent-dk); margin-bottom: 1.1rem; display: flex; align-items: center; gap: .5rem; }
+    .cred__h svg { width: 1.05rem; height: 1.05rem; color: var(--color-accent); }
+    .edu-item, .lic-item { padding: .55rem 0; border-top: 1px solid var(--color-line-soft); }
+    .edu-item:first-of-type, .lic-item:first-of-type { border-top: 0; padding-top: 0; }
+    .edu-item .t, .lic-item .t { font-weight: 700; font-size: .98rem; }
+    .edu-item .s { color: var(--color-muted); font-size: .88rem; }
+    .edu-item .y, .lic-item .y { font-family: var(--font-mono); font-size: .72rem; color: var(--color-faint); }
+    .lic-item { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    /* 수상 (썸네일 → 라이트박스) */
+    .awards { display: grid; gap: 1rem; }
+    @media (min-width: 620px) { .awards { grid-template-columns: repeat(3, 1fr); } }
+    .award { display: grid; gap: .8rem; }
+    .award__thumb { position: relative; cursor: zoom-in; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--color-line); background: var(--color-bg); aspect-ratio: 4 / 3; }
+    .award__thumb img { width: 100%; height: 100%; object-fit: contain; padding: .4rem; transition: transform .3s ease; }
+    .award__thumb:hover img { transform: scale(1.04); }
+    .award__thumb::after { content: "확대"; position: absolute; right: .5rem; bottom: .5rem; font-family: var(--font-mono); font-size: .62rem; color: var(--color-white); background: rgba(26,26,26,.72); padding: .15rem .45rem; border-radius: 5px; opacity: 0; transition: opacity .2s ease; }
+    .award__thumb:hover::after { opacity: 1; }
+    .award__t { font-weight: 700; font-size: .92rem; line-height: 1.35; }
+    .award__o { color: var(--color-muted); font-size: .82rem; }
+    .award__o .mono { font-family: var(--font-mono); font-size: .72rem; color: var(--color-faint); }
+    .research-line { margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--color-line-soft); display: grid; gap: .5rem; }
+    .research-line .r { display: grid; grid-template-columns: auto 1fr; gap: .7rem; font-size: .9rem; color: var(--color-muted); }
+    .research-line .r .tag { font-family: var(--font-mono); font-size: .68rem; font-weight: 700; color: var(--color-accent-dk); background: var(--color-accent-soft); padding: .15rem .5rem; border-radius: 5px; height: fit-content; white-space: nowrap; }
+    .research-line .r b { color: var(--color-text); }
+
+    /* ============================================================
+       8. 핵심 역량 + 블로그
+       ============================================================ */
+    .skills { margin-top: 2.2rem; display: grid; gap: 1rem; }
+    @media (min-width: 720px) { .skills { grid-template-columns: 1fr 1fr; } }
+    .skillcard { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius); padding: 1.4rem clamp(1.1rem, 3vw, 1.5rem); }
+    .skillcard__h { display: flex; align-items: center; gap: .6rem; font-weight: 800; font-size: 1.05rem; margin-bottom: 1rem; }
+    .skillcard__h .ico { width: 2rem; height: 2rem; flex: none; border-radius: 8px; background: var(--color-accent-soft); color: var(--color-accent); display: grid; place-items: center; }
+    .skillcard__h .ico svg { width: 1.1rem; height: 1.1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .tag { font-size: .82rem; font-weight: 500; color: var(--color-muted); background: var(--color-bg); border: 1px solid var(--color-line); padding: .35rem .7rem; border-radius: 999px; }
+    .tag--key { color: var(--color-accent-dk); background: var(--color-accent-soft); border-color: var(--color-accent-line); font-weight: 700; }
+    /* 블로그 (준비 중) */
+    .blog { margin-top: 1rem; display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.3rem; justify-content: space-between; background: var(--color-surface); border: 1px dashed var(--color-line); border-radius: var(--radius); padding: 1.3rem clamp(1.1rem, 3vw, 1.5rem); }
+    .blog__l { display: flex; align-items: center; gap: .9rem; }
+    .blog__ico { width: 2.6rem; height: 2.6rem; flex: none; border-radius: 10px; background: var(--color-accent-soft); color: var(--color-accent); display: grid; place-items: center; }
+    .blog__ico svg { width: 1.3rem; height: 1.3rem; }
+    .blog__t { font-weight: 800; font-size: 1.02rem; }
+    .blog__s { color: var(--color-muted); font-size: .88rem; }
+    .blog__badge { font-family: var(--font-mono); font-size: .74rem; font-weight: 700; color: var(--color-faint); background: var(--color-bg); border: 1px solid var(--color-line); padding: .4rem .8rem; border-radius: 999px; white-space: nowrap; }
+
+    /* ============================================================
+       9. 푸터 (딥 인디고)
+       ============================================================ */
+    .footer { background: var(--color-accent-dk); color: var(--color-on-dark); padding: clamp(3rem, 7vw, 4.5rem) 0 2.2rem; }
+    .footer__cta { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800; color: var(--color-white); letter-spacing: -0.025em; }
+    .footer__sub { color: var(--color-on-dark-mut); margin-top: .7rem; max-width: 46ch; }
+    .footer__contacts { margin-top: 2rem; display: grid; gap: .7rem; }
+    .fcontact { display: inline-flex; align-items: center; gap: .8rem; width: fit-content; color: var(--color-on-dark); transition: color .18s ease; }
+    .fcontact:hover { color: var(--color-white); }
+    .fcontact .ic { width: 2.3rem; height: 2.3rem; flex: none; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); transition: background .18s ease; }
+    .fcontact:hover .ic { background: var(--color-accent); }
+    .fcontact .ic svg { width: 1.1rem; height: 1.1rem; }
+    .fcontact .lab { font-family: var(--font-mono); font-size: .72rem; color: var(--color-on-dark-mut); display: block; }
+    .fcontact .val { font-weight: 600; }
+    .footer__bottom { margin-top: 2.6rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.12); display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; justify-content: space-between; align-items: center; color: var(--color-on-dark-mut); font-size: .82rem; }
+    .footer__bottom a { color: var(--color-on-dark-mut); border-bottom: 1px solid transparent; }
+    .footer__bottom a:hover { color: var(--color-white); border-bottom-color: rgba(255,255,255,.4); }
+    .footer__dl { display: inline-flex; align-items: center; gap: .45rem; color: var(--color-white); font-weight: 600; }
+    .footer__dl svg { width: .95rem; height: .95rem; }
+
+    /* ============================================================
+       라이트박스 (순수 JS, 라이브러리 없음)
+       ============================================================ */
+    .lightbox { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: clamp(1rem, 5vw, 3rem); background: rgba(20,18,40,.82); backdrop-filter: blur(4px); animation: lb-in .2s ease; }
+    .lightbox[hidden] { display: none; }
+    .lightbox__img { max-width: 100%; max-height: 86vh; border-radius: 10px; box-shadow: 0 24px 70px rgba(0,0,0,.5); background: var(--color-white); }
+    .lightbox__cap { position: absolute; bottom: clamp(.8rem,3vw,1.6rem); left: 50%; transform: translateX(-50%); color: var(--color-white); font-size: .85rem; font-family: var(--font-mono); background: rgba(0,0,0,.4); padding: .4rem .9rem; border-radius: 999px; }
+    .lightbox__close { position: absolute; top: clamp(.8rem,3vw,1.4rem); right: clamp(.8rem,3vw,1.4rem); width: 2.8rem; height: 2.8rem; border-radius: 50%; border: 0; background: rgba(255,255,255,.14); color: var(--color-white); font-size: 1.5rem; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .18s ease; }
+    .lightbox__close:hover { background: var(--color-accent); }
+    @keyframes lb-in { from { opacity: 0; } to { opacity: 1; } }
+
+    /* 접근성: 모션 최소화 선호 */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ============================ 1. 상단바 ============================ -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a href="#top" class="brand" aria-label="이재모 — 맨 위로">
+        이재모 <small>AI Service Planner</small>
+      </a>
+      <nav class="header__actions" aria-label="연락처 및 이력서">
+        <a class="iconbtn" href="mailto:jaimo012@naver.com" aria-label="이메일 보내기">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </a>
+        <a class="iconbtn" href="tel:+821091050121" aria-label="전화 걸기">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+        <a class="iconbtn" href="https://www.linkedin.com/in/alpha9001" target="_blank" rel="noopener" aria-label="링크드인 프로필 (새 창)">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18V9.99H5.67V18h2.67zM7 8.8a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zM18.34 18v-4.4c0-2.36-1.26-3.46-2.94-3.46-1.36 0-1.96.75-2.3 1.27V9.99h-2.66c.04.75 0 8.01 0 8.01h2.66v-4.47c0-.24.02-.48.09-.65.19-.48.63-.97 1.36-.97.96 0 1.35.73 1.35 1.8V18h2.74z"/></svg>
+        </a>
+        <a class="btn-pdf" href="./이재모_경력기술서_AI서비스기획자.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          경력기술서<span class="btn-pdf__long"> PDF</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================ 2. 히어로 ============================ -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <span class="hero__eyebrow"><span class="dot"></span>정책 · 기술 · 사업을 잇는 12년</span>
+          <h1>
+            맨바닥에서 <span class="accent">80억</span>을 만든 기획자,<br />
+            다음은 <span class="accent">AI</span>입니다.
+            <span class="hero__role">정책·기술·사업을 잇는 AI 서비스 기획자</span>
+          </h1>
+          <p class="hero__philo">"기술의 유무가 아니라, 그것을 조직과 제품에 담는 방식이 성패를 가른다."</p>
+          <p class="hero__desc">
+            정책 기획의 논리, AI 연구개발의 기술 이해, 엔터프라이즈 사업개발의 시장 감각을 하나로 잇습니다.
+            최근에는 LLM 기반 서비스를 직접 기획·개발해 사내 정식 제품으로 출시했습니다.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#projects">
+              대표 프로젝트 보기
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="./이재모_경력기술서_AI서비스기획자.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+              경력기술서 PDF
+            </a>
+          </div>
+        </div>
+        <div class="hero__media">
+          <img class="hero__photo" src="images/profile_jaimo.jpg" alt="이재모 프로필 사진" width="288" height="360" />
+          <div class="hero__badge">
+            <span class="num mono">12<span style="font-size:.6em">년+</span></span>
+            <span class="lab">정책·연구개발<br />·사업개발 경력</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 3. 성과 숫자 ============================ -->
+    <section class="metrics section--tight" aria-label="핵심 성과 지표">
+      <div class="container">
+        <ul class="metrics__grid">
+          <li class="metric">
+            <span class="metric__val mono">80<span class="unit">억</span></span>
+            <span class="metric__name">연간 신규 수주</span>
+            <span class="metric__sub">엔터프라이즈 계약 체결액 (2025)</span>
+          </li>
+          <li class="metric">
+            <span class="metric__val mono">13.4<span class="unit">억</span></span>
+            <span class="metric__name">정부 R&amp;D 사업비</span>
+            <span class="metric__sub">AI 물류 신사업 4건 수주</span>
+          </li>
+          <li class="metric">
+            <span class="metric__val mono">114<span class="unit">%</span></span>
+            <span class="metric__name">연간 목표 달성률</span>
+            <span class="metric__sub">수주 목표 초과 달성</span>
+          </li>
+          <li class="metric">
+            <span class="metric__val mono">70<span class="unit">%↓</span></span>
+            <span class="metric__name">AI 예측오차 개선</span>
+            <span class="metric__sub">수요예측 ±10% → ±3%</span>
+          </li>
+        </ul>
+        <div class="metrics__strip">
+          <span><b>12년 3개월</b> 정책·연구개발·사업개발</span>
+          <span><b>44건</b> 정책·사업 타당성 컨설팅</span>
+          <span><b>10×</b> 창업지원 매출 성장 (월 3천→3억)</span>
+          <span><b>3,000건+</b> 자체 영업 데이터베이스</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 4. 전환 서사 ============================ -->
+    <section class="section" id="journey">
+      <div class="container">
+        <span class="section__label">Career Arc</span>
+        <h2 class="section__title">서로 다른 세 개의 점을 하나의 선으로</h2>
+        <p class="section__lead">정책에서 기술로, 기술에서 사업으로 — "문제를 기술과 논리로 푼다"는 하나의 선이 이제 AI 서비스 기획으로 이어집니다.</p>
+        <div class="journey__flow">
+          <article class="stage">
+            <span class="stage__no">01</span>
+            <h3 class="stage__name">정책 기획 <span class="stage__year">2013~</span></h3>
+            <p class="stage__desc">국가 의제를 설정하고 논리모형으로 타당성을 입증한 <b>'설계자의 눈'</b></p>
+          </article>
+          <article class="stage">
+            <span class="stage__no">02</span>
+            <h3 class="stage__name">AI 연구개발 <span class="stage__year">2018~</span></h3>
+            <p class="stage__desc">기획을 실제 기술로 구현하고 13.4억 사업비를 확보한 <b>'실행력'</b></p>
+          </article>
+          <article class="stage">
+            <span class="stage__no">03</span>
+            <h3 class="stage__name">B2B 사업개발 <span class="stage__year">2022~</span></h3>
+            <p class="stage__desc">맨바닥에서 시장 반응 지점을 찾아 80억 매출로 연결한 <b>'현장 감각'</b></p>
+          </article>
+          <article class="stage stage--final">
+            <span class="stage__no">04</span>
+            <h3 class="stage__name">AI 서비스 기획 </h3>
+            <p class="stage__desc">사람과 AI의 최적 분업 구조를 정밀하게 설계하는 <b>두 번째 커리어의 정점</b></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 5. 대표 프로젝트 ============================ -->
+    <section class="section" id="projects" style="background:var(--color-surface); border-block:1px solid var(--color-line);">
+      <div class="container">
+        <span class="section__label">Selected Work</span>
+        <h2 class="section__title">직접 기획하고, 직접 개발한 AI 서비스</h2>
+        <p class="section__lead">"이 업무를 사람이 꼭 해야 하는가"를 기준으로 업무를 분해하고, 파이썬과 AI API로 시제품을 직접 만드는 기획자입니다.</p>
+
+        <div class="accordion">
+          <!-- 프로젝트 1 -->
+          <article class="proj is-open">
+            <button class="proj__head" aria-expanded="true" aria-controls="proj-body-1">
+              <span class="proj__no">01</span>
+              <span class="proj__heading">
+                <span class="proj__title">AI 이력서 분석 서비스</span>
+                <span class="proj__tag">LLM 기반 · 사내 정식 제품화</span>
+              </span>
+              <span class="proj__chev" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </button>
+            <div class="proj__reveal">
+              <div class="proj__bodywrap">
+                <div class="proj__body" id="proj-body-1">
+                  <p class="proj__role">역할 · 서비스 기획 → 설계 → 개발 → 출시 전 과정 단독 수행</p>
+                  <div class="pac">
+                    <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">정형화되지 않은 이력서를 사람이 일일이 검토해, 후보자 발굴·추천에 <strong>1~2일</strong>이 소요. 속도가 곧 수주인 비즈니스의 병목.</span></div>
+                    <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">이력서를 AI로 분석해 <strong>정형 데이터로 전환</strong>하고, 채용공고–후보자를 대조해 적합도 점수와 매칭 사유 보고서를 자동 생성. 출력 형식 고정·원문 근거 대조·반복 검증으로 <strong>AI 환각 오류를 통제</strong>.</span></div>
+                    <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">후보자 발굴 시간을 <span class="mono">1~2일 → 수 시간</span>으로 단축. 개인 시제품 → 영업·매칭팀 도입 → <strong>정식 제품 전환</strong> → 데이터팀 이관·고도화로 발전.</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 프로젝트 2 -->
+          <article class="proj">
+            <button class="proj__head" aria-expanded="false" aria-controls="proj-body-2">
+              <span class="proj__no">02</span>
+              <span class="proj__heading">
+                <span class="proj__title">임장톡 (ImjangTalk)</span>
+                <span class="proj__tag">음성 인식 + AI · 단독 기획·개발 중</span>
+              </span>
+              <span class="proj__chev" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </button>
+            <div class="proj__reveal">
+              <div class="proj__bodywrap">
+                <div class="proj__body" id="proj-body-2">
+                  <p class="proj__role">역할 · 서비스 기획 → 설계 → 개발 전 과정 단독 수행</p>
+                  <div class="pac">
+                    <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">부동산 임장(현장 답사) 시 보고 들은 정보가 휘발되고, 현장에서 손으로 기록하기 어려움.</span></div>
+                    <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">음성 인식과 AI를 기반으로 <strong>임장 현장 경험을 보조하는 모바일 서비스</strong>를 기획. 제품 요구사항 정의서(PRD)를 기준으로 단계별 개발 및 품질 검증을 진행 중.</span></div>
+                    <div class="pac__item pac__item--result"><span class="pac__k">현황</span><span class="pac__v">단독으로 기획·설계·개발 진행 중.
+                      <a class="repo-link" href="https://github.com/jaimo012/ImjangTalk" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10 10 0 0 0 22 12 10 10 0 0 0 12 2z"/></svg>
+                        github.com/jaimo012/ImjangTalk
+                      </a>
+                    </span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 프로젝트 3 -->
+          <article class="proj">
+            <button class="proj__head" aria-expanded="false" aria-controls="proj-body-3">
+              <span class="proj__no">03</span>
+              <span class="proj__heading">
+                <span class="proj__title">AI 기반 업무 자동화 시스템</span>
+                <span class="proj__tag">7종 · 직접 기획·개발해 사내 운영 중</span>
+              </span>
+              <span class="proj__chev" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </button>
+            <div class="proj__reveal">
+              <div class="proj__bodywrap">
+                <div class="proj__body" id="proj-body-3">
+                  <p class="proj__role">역할 · "사람이 해야만 하는 일과 AI가 더 잘하는 일"을 분해해 직접 개발·운영</p>
+                  <ul class="autolist">
+                    <li><span class="a-name">잠재 고객 발굴</span><span class="a-stack">Python · Selenium</span></li>
+                    <li><span class="a-name">개인화 제안 메일</span><span class="a-stack">AI API · 메일</span></li>
+                    <li><span class="a-name">영업 통화 분석·기록</span><span class="a-stack">AI API · Sheets</span></li>
+                    <li><span class="a-name">회의록 자동 생성</span><span class="a-stack">STT · AI API</span></li>
+                    <li><span class="a-name">경쟁사 동향 모니터링</span><span class="a-stack">Python · Slack</span></li>
+                    <li><span class="a-name">문의 자동 응대</span><span class="a-stack">AI API · Slack</span></li>
+                    <li><span class="a-name">뉴스레터 큐레이션</span><span class="a-stack">포털 API · AI</span></li>
+                  </ul>
+                  <div class="pac" style="margin-top:1rem">
+                    <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">반복 업무를 제거해 리소스를 고부가가치 업무로 재배치. 잠재고객 발굴·제안메일·회의록 시스템은 <strong>사내 타 조직으로 확산</strong> 적용.</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 6. 경력 ============================ -->
+    <section class="section" id="career">
+      <div class="container">
+        <span class="section__label">Experience</span>
+        <h2 class="section__title">경력 <span class="mono" style="font-size:.55em; color:var(--color-faint); font-weight:500;">총 12년 3개월</span></h2>
+        <div class="career">
+          <article class="job job--lead">
+            <div class="job__logo"><img src="images/logos/kmong.png" alt="크몽 로고" /></div>
+            <div class="job__main">
+              <div class="job__top">
+                <span class="job__co">크몽</span>
+                <span class="job__role">엔터프라이즈 사업개발 · 비즈니스 기획 팀장</span>
+                <span class="job__period">2023.04 ~ 현재</span>
+              </div>
+              <p class="job__desc">국내 1위 프리랜서 플랫폼의 B2B 전담 조직. 엔터프라이즈 IT 아웃소싱 사업을 맨바닥에서 설계해 <span class="mono">연 80억</span> 신규 수주로 성장 견인(<b>목표 114% 초과</b>). 고객 발굴·이력서 분석·후보 매칭 AI 세일즈 시스템을 직접 기획·개발.</p>
+            </div>
+          </article>
+
+          <article class="job">
+            <div class="job__logo"><img src="images/logos/kmong.png" alt="크몽 로고" /></div>
+            <div class="job__main">
+              <div class="job__top">
+                <span class="job__co">크몽</span>
+                <span class="job__role">스타트업 사업개발 · 채널 기획 팀장</span>
+                <span class="job__period">2022.04 ~ 2023.03</span>
+              </div>
+              <p class="job__desc">초기 창업자 대상 IT 아웃소싱 비즈니스의 시장 진입 전략·신규 채널 기획. 실적 부진 구간(월 3천만원)을 1년 만에 <span class="mono">월 3억(10×)</span>으로 반전, 3,000건+ 자체 DB로 자생적 영업 파이프라인 구축.</p>
+            </div>
+          </article>
+
+          <article class="job">
+            <div class="job__logo"><img src="images/logos/kiindex.jpg" alt="한국산업인덱스 로고" /></div>
+            <div class="job__main">
+              <div class="job__top">
+                <span class="job__co">한국산업인덱스</span>
+                <span class="job__role">정책컨설팅 책임연구원</span>
+                <span class="job__period">2020.01 ~ 2022.03</span>
+              </div>
+              <p class="job__desc">중소기업 연구개발 지원체계의 디지털 전환을 위한 신규 정부사업 기획·타당성 분석. 빅데이터 기반 R&amp;D 지원시스템, 사용자 참여형 리빙랩, 지역 미래 전략산업 로드맵 수립을 주도.</p>
+            </div>
+          </article>
+
+          <article class="job">
+            <div class="job__logo"><img src="images/logos/logifocus.png" alt="로지포커스 로고" /></div>
+            <div class="job__main">
+              <div class="job__top">
+                <span class="job__co">로지포커스</span>
+                <span class="job__role">지능물류연구소 기획팀 대리</span>
+                <span class="job__period">2018.09 ~ 2019.12</span>
+              </div>
+              <p class="job__desc">물류에 AI를 접목한 신규 서비스를 기획부터 실증까지 주도. 정부 R&amp;D <span class="mono">13.4억</span> 사업비 확보, AI 수요예측·인력배치로 <b>예측오차 ±10%→±3%(약 70% 개선)</b>, 관련 공모전 2년 연속 최우수상.</p>
+            </div>
+          </article>
+
+          <article class="job">
+            <div class="job__logo"><img src="images/logos/kiindex.jpg" alt="한국산업인덱스 로고" /></div>
+            <div class="job__main">
+              <div class="job__top">
+                <span class="job__co">한국산업인덱스</span>
+                <span class="job__role">정책컨설팅 선임연구원</span>
+                <span class="job__period">2013.07 ~ 2018.04</span>
+              </div>
+              <p class="job__desc">정부 산업·R&amp;D 정책 타당성 조사·성과분석 컨설팅 <b>총 44건</b>. 국가혁신클러스터 전략을 기획·제안해 <b>100대 국정과제로 채택</b>, 1,000억 규모 사업의 예산 삭감 방어 논리 개발, 논리모형 기반 성과분석 방법론 정립.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 7. 학력·수상·자격·연구 ============================ -->
+    <section class="section" id="credentials" style="background:var(--color-surface); border-block:1px solid var(--color-line);">
+      <div class="container">
+        <span class="section__label">Credentials</span>
+        <h2 class="section__title">학력 · 수상 · 자격 · 연구</h2>
+
+        <div class="cred-grid">
+          <!-- 학력 -->
+          <div class="cred">
+            <h3 class="cred__h">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.5 3 6 3s6-2 6-3v-5"/></svg>
+              학력
+            </h3>
+            <div class="edu-item">
+              <p class="t">서울시립대학교 경영대학원 <span class="y">2020.03 ~ 2022.02</span></p>
+              <p class="s">경영학 석사(MBA) / 경영과학(오퍼레이션 리서치)</p>
+            </div>
+            <div class="edu-item">
+              <p class="t">고려대학교 (세종) <span class="y">2008.03 ~ 2015.08</span></p>
+              <p class="s">경제학(심화) · 경영학(부전공)</p>
+            </div>
+          </div>
+
+          <!-- 자격 + 대외활동/연구 -->
+          <div class="cred">
+            <h3 class="cred__h">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg>
+              자격 · 대외활동 · 연구실적
+            </h3>
+            <div class="lic-item"><span class="t">사물인터넷 지식능력검정</span><span class="y">2018.11</span></div>
+            <div class="lic-item"><span class="t">유통관리사 2급</span><span class="y">2009.10</span></div>
+            <div class="research-line">
+              <div class="r"><span class="tag">멘토·위원</span><span>ICT콤플렉스 전문가 멘토 · 창업지원사업 평가위원 · 중소기업기술개발지원사업 평가위원</span></div>
+              <div class="r"><span class="tag">논문</span><span>AI 기반 창고관리시스템 / 자동화 반품물류 시스템 <b>2편</b> (한국통신학회, 공동저자)</span></div>
+              <div class="r"><span class="tag">특허</span><span>창고관리시스템의 주문상품 배송포장 장치 <b>1건</b> (10-2019-0159752)</span></div>
+            </div>
+          </div>
+
+          <!-- 수상 (라이트박스) -->
+          <div class="cred cred--awards">
+            <h3 class="cred__h">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9a6 6 0 0 0 12 0V3H6v6z"/><path d="M6 5H3v2a3 3 0 0 0 3 3M18 5h3v2a3 3 0 0 1-3 3M9 21h6M12 15v6"/></svg>
+              수상 <span style="font-weight:500; color:var(--color-faint); text-transform:none; letter-spacing:0; margin-left:.3rem;">· 이미지를 클릭하면 상장이 확대됩니다</span>
+            </h3>
+            <div class="awards">
+              <figure class="award">
+                <div class="award__thumb" data-full="images/2019ksb.jpg" data-cap="2019 KSB 인공지능 프레임워크 활용 공모전 최우수상">
+                  <img src="images/2019ksb.jpg" alt="2019 KSB 인공지능 프레임워크 활용 공모전 최우수상 상장" loading="lazy" />
+                </div>
+                <figcaption>
+                  <p class="award__t">2019 KSB 인공지능 프레임워크 활용 공모전 최우수상</p>
+                  <p class="award__o">국가과학기술연구회 <span class="mono">2019.10</span></p>
+                </figcaption>
+              </figure>
+              <figure class="award">
+                <div class="award__thumb" data-full="images/2018ksb.jpg" data-cap="2018 KSB 인공지능 프레임워크 활용 공모전 최우수상">
+                  <img src="images/2018ksb.jpg" alt="2018 KSB 인공지능 프레임워크 활용 공모전 최우수상 상장" loading="lazy" />
+                </div>
+                <figcaption>
+                  <p class="award__t">2018 KSB 인공지능 프레임워크 활용 공모전 최우수상</p>
+                  <p class="award__o">한국전자통신연구원 <span class="mono">2018.10</span></p>
+                </figcaption>
+              </figure>
+              <figure class="award">
+                <div class="award__thumb" data-full="images/2012koreaUniv.png" data-cap="고려대학교 경상대학 학술제 최우수상">
+                  <img src="images/2012koreaUniv.png" alt="고려대학교 경상대학 학술제 최우수상 상장" loading="lazy" />
+                </div>
+                <figcaption>
+                  <p class="award__t">고려대학교 경상대학 학술제 최우수상</p>
+                  <p class="award__o">고려대학교 경상대학 <span class="mono">2012.11</span></p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 8. 핵심 역량 + 블로그 ============================ -->
+    <section class="section" id="skills">
+      <div class="container">
+        <span class="section__label">Capabilities</span>
+        <h2 class="section__title">핵심 역량</h2>
+
+        <div class="skills">
+          <div class="skillcard">
+            <div class="skillcard__h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v1a3 3 0 0 0-3 3 3 3 0 0 0 0 6 3 3 0 0 0 3 3v1a3 3 0 0 0 6 0v-1a3 3 0 0 0 3-3 3 3 0 0 0 0-6 3 3 0 0 0-3-3V5a3 3 0 0 0-3-3z"/></svg></span>
+              AI 서비스 기획
+            </div>
+            <div class="tags">
+              <span class="tag tag--key">LLM 서비스 기획·실증</span>
+              <span class="tag tag--key">프롬프트 설계</span>
+              <span class="tag">비즈니스 요구사항 정의</span>
+              <span class="tag">사용자 경험(UX) 설계</span>
+            </div>
+          </div>
+
+          <div class="skillcard">
+            <div class="skillcard__h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+              개발 · 자동화
+            </div>
+            <div class="tags">
+              <span class="tag tag--key">Python</span>
+              <span class="tag">AI API 연동 (GPT·Claude·Gemini·클로바)</span>
+              <span class="tag">데이터 수집</span>
+              <span class="tag">Google Apps Script</span>
+              <span class="tag">업무 자동화</span>
+            </div>
+          </div>
+
+          <div class="skillcard">
+            <div class="skillcard__h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg></span>
+              전략 · 분석
+            </div>
+            <div class="tags">
+              <span class="tag tag--key">신사업 발굴</span>
+              <span class="tag">타당성 분석</span>
+              <span class="tag">시장 진입 전략</span>
+              <span class="tag">논리모형 기반 성과 설계</span>
+              <span class="tag">성과 지표 설계</span>
+            </div>
+          </div>
+
+          <div class="skillcard">
+            <div class="skillcard__h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg></span>
+              데이터
+            </div>
+            <div class="tags">
+              <span class="tag tag--key">SQL</span>
+              <span class="tag">데이터 시각화</span>
+              <span class="tag">대시보드 구축</span>
+              <span class="tag">Google Sheets · Excel</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 블로그 (준비 중) -->
+        <div class="blog">
+          <div class="blog__l">
+            <span class="blog__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7M9 11h5"/></svg></span>
+            <div>
+              <p class="blog__t">AX 성과에 대한 생각</p>
+              <p class="blog__s">"기술을 조직과 제품에 담는 방식"에 대한 글 — 티스토리 블로그</p>
+            </div>
+          </div>
+          <span class="blog__badge">준비 중 · Coming Soon</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ 9. 푸터 ============================ -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <p class="footer__cta">사람과 AI가 함께 일하는 구조를 설계합니다.</p>
+      <p class="footer__sub">정책 기획 · AI 연구개발 · B2B 사업개발을 잇는 기획자. 매칭·제안은 편하게 연락 주세요.</p>
+
+      <div class="footer__contacts">
+        <a class="fcontact" href="mailto:jaimo012@naver.com">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span><span class="lab">EMAIL</span><span class="val">jaimo012@naver.com</span></span>
+        </a>
+        <a class="fcontact" href="tel:+821091050121">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span><span class="lab">MOBILE</span><span class="val">010-9105-0121</span></span>
+        </a>
+        <a class="fcontact" href="https://www.linkedin.com/in/alpha9001" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18V9.99H5.67V18h2.67zM7 8.8a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zM18.34 18v-4.4c0-2.36-1.26-3.46-2.94-3.46-1.36 0-1.96.75-2.3 1.27V9.99h-2.66c.04.75 0 8.01 0 8.01h2.66v-4.47c0-.24.02-.48.09-.65.19-.48.63-.97 1.36-.97.96 0 1.35.73 1.35 1.8V18h2.74z"/></svg></span>
+          <span><span class="lab">LINKEDIN</span><span class="val">linkedin.com/in/alpha9001</span></span>
+        </a>
+      </div>
+
+      <div class="footer__bottom">
+        <span>이재모 · AI 서비스 기획자 · 서울시 동대문구</span>
+        <span>
+          <a href="https://github.com/jaimo012" target="_blank" rel="noopener">github.com/jaimo012</a>
+          &nbsp;·&nbsp;
+          <a class="footer__dl" href="./이재모_경력기술서_AI서비스기획자.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+            경력기술서 PDF
+          </a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 라이트박스 -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="상장 이미지 확대 보기" hidden>
+    <button class="lightbox__close" id="lbClose" aria-label="확대 보기 닫기">&times;</button>
+    <img class="lightbox__img" id="lbImg" alt="" />
+    <span class="lightbox__cap" id="lbCap"></span>
+  </div>
+
+  <script>
+    'use strict';
+    (function () {
+      /* ---- sticky 헤더 스크롤 그림자 ---- */
+      var header = document.querySelector('.header');
+      window.addEventListener('scroll', function () {
+        header.classList.toggle('is-scrolled', window.scrollY > 8);
+      }, { passive: true });
+
+      /* ---- 아코디언 (이벤트 위임) ---- */
+      var accordion = document.querySelector('.accordion');
+      if (accordion) {
+        accordion.addEventListener('click', function (e) {
+          var head = e.target.closest('.proj__head');
+          if (!head) return;
+          var card = head.closest('.proj');
+          var open = card.classList.toggle('is-open');
+          head.setAttribute('aria-expanded', String(open));
+        });
+      }
+
+      /* ---- 라이트박스 (상장 확대) ---- */
+      var lb = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lbImg');
+      var lbCap = document.getElementById('lbCap');
+      var lastFocus = null;
+
+      function openLightbox(thumb) {
+        lastFocus = document.activeElement;
+        lbImg.src = thumb.getAttribute('data-full');
+        lbImg.alt = (thumb.getAttribute('data-cap') || '') + ' (확대)';
+        lbCap.textContent = thumb.getAttribute('data-cap') || '';
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        document.getElementById('lbClose').focus();
+      }
+      function closeLightbox() {
+        lb.hidden = true;
+        lbImg.src = '';
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+      }
+
+      document.addEventListener('click', function (e) {
+        var thumb = e.target.closest('.award__thumb');
+        if (thumb) { openLightbox(thumb); return; }
+        if (e.target === lb || e.target.closest('#lbClose')) closeLightbox();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !lb.hidden) closeLightbox();
+      });
+    })();
+  </script>
+</body>
+</html>
