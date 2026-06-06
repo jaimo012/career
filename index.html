@@ -161,6 +161,7 @@
     .hero__eyebrow .dot { width: .45rem; height: .45rem; border-radius: 50%; background: var(--color-accent); }
     .hero h1 { font-size: clamp(2.1rem, 6.4vw, 3.6rem); font-weight: 800; letter-spacing: -0.035em; }
     .hero h1 .accent { color: var(--color-accent); }
+    .hero__line { display: inline-block; }  /* 의미 단위로만 줄바꿈 — 단어 중간이 안 깨짐 */
     .hero__role { display: block; font-size: clamp(1.05rem, 3vw, 1.4rem); font-weight: 700; color: var(--color-accent-dk); margin-top: .5rem; letter-spacing: -0.02em; }
     .hero__philo {
       margin-top: 1.6rem; padding-left: 1.1rem; border-left: 3px solid var(--color-accent);
@@ -285,24 +286,51 @@
     .autolist .a-name { font-weight: 700; font-size: .92rem; }
     .autolist .a-stack { font-family: var(--font-mono); font-size: .68rem; color: var(--color-muted); background: var(--color-surface); border: 1px solid var(--color-line); padding: .15rem .45rem; border-radius: 5px; white-space: nowrap; }
     @media (min-width: 680px) { .autolist { grid-template-columns: 1fr 1fr; } }
+    /* 상위 강조 자동화 3종 (상세 카드) */
+    .autocards { display: grid; gap: .7rem; margin-top: .3rem; }
+    .autocard { background: var(--color-bg); border: 1px solid var(--color-line); border-radius: var(--radius-sm); padding: .85rem 1rem; }
+    .autocard__top { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .7rem; margin-bottom: .4rem; }
+    .autocard__name { font-weight: 800; font-size: .98rem; }
+    .autocard__desc { color: var(--color-muted); font-size: .9rem; }
+    .autocard__desc b { color: var(--color-text); font-weight: 700; }
+    .autolist__label { font-family: var(--font-mono); font-size: .72rem; font-weight: 700; color: var(--color-faint); letter-spacing: .04em; margin: 1.15rem 0 .55rem; }
+    .autolist--mini li { padding: .55rem .8rem; }
+    .autolist--mini .a-name { font-weight: 600; font-size: .87rem; }
 
     /* ============================================================
        6. 경력
        ============================================================ */
     .career { margin-top: 2.2rem; position: relative; display: grid; gap: 1rem; }
-    .job { display: grid; grid-template-columns: auto 1fr; gap: 1rem 1.2rem; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius); padding: 1.3rem clamp(1.1rem, 3vw, 1.5rem); transition: box-shadow .2s ease, transform .2s ease; }
-    .job:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-    .job__logo { width: 3.2rem; height: 3.2rem; flex: none; border-radius: 12px; background: var(--color-white); border: 1px solid var(--color-line); display: grid; place-items: center; padding: .45rem; }
+    .job { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius); overflow: hidden; transition: box-shadow .2s ease, border-color .2s ease; }
+    .job.is-open { border-color: var(--color-accent-line); box-shadow: var(--shadow); }
+    .job--lead { border-left: 3px solid var(--color-accent); }
+    .job__head { width: 100%; text-align: left; background: none; border: 0; cursor: pointer; font-family: inherit; color: inherit; display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: .9rem 1.1rem; padding: 1.2rem clamp(1.1rem, 3vw, 1.5rem); }
+    .job__logo { width: 3.2rem; height: 3.2rem; border-radius: 12px; background: var(--color-white); border: 1px solid var(--color-line); display: grid; place-items: center; padding: .45rem; }
     .job__logo img { max-height: 1.9rem; max-width: 2.3rem; width: auto; object-fit: contain; }
-    .job__main { min-width: 0; }
+    .job__main { min-width: 0; display: block; }
     .job__top { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .7rem; }
     .job__co { font-weight: 800; font-size: 1.08rem; letter-spacing: -0.02em; }
     .job__role { color: var(--color-accent-dk); font-weight: 700; font-size: .95rem; }
     .job__period { font-family: var(--font-mono); font-size: .76rem; color: var(--color-faint); margin-left: auto; white-space: nowrap; }
-    .job__desc { color: var(--color-muted); font-size: .94rem; margin-top: .5rem; }
+    .job__desc { display: block; color: var(--color-muted); font-size: .94rem; margin-top: .5rem; }
     .job__desc b { color: var(--color-text); }
     .job__desc .mono { font-family: var(--font-mono); color: var(--color-accent); font-weight: 700; }
-    .job--lead { border-left: 3px solid var(--color-accent); }
+    .job__chev { width: 2rem; height: 2rem; align-self: center; border-radius: 50%; background: var(--color-accent-soft); color: var(--color-accent); display: grid; place-items: center; transition: transform .3s ease, background .2s ease; }
+    .job__chev svg { width: 1.05rem; height: 1.05rem; }
+    .job.is-open .job__chev { transform: rotate(135deg); background: var(--color-accent); color: var(--color-white); }
+    .job__reveal { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+    .job.is-open .job__reveal { grid-template-rows: 1fr; }
+    .job__bodywrap { overflow: hidden; }
+    .job__body { padding: 0 clamp(1.1rem, 3vw, 1.5rem) 1.4rem; }
+    .job__body-inner { padding-top: .9rem; border-top: 1px dashed var(--color-line); }
+    .job__sub { font-family: var(--font-mono); font-size: .72rem; font-weight: 700; letter-spacing: .08em; color: var(--color-accent-dk); text-transform: uppercase; margin: 1rem 0 .55rem; }
+    .job__body-inner > .job__sub:first-child { margin-top: 0; }
+    .job__list { display: grid; gap: .5rem; }
+    .job__list li { position: relative; padding-left: 1.05rem; color: var(--color-muted); font-size: .92rem; line-height: 1.55; }
+    .job__list li::before { content: ""; position: absolute; left: 0; top: .58em; width: .34rem; height: .34rem; border-radius: 50%; background: var(--color-accent); }
+    .job__list li b { color: var(--color-text); font-weight: 700; }
+    .job__list li .mono { font-family: var(--font-mono); color: var(--color-accent); font-weight: 700; }
+    .job__list--result li::before { background: var(--color-accent-dk); }
 
     /* ============================================================
        7. 학력 · 수상 · 자격 · 연구 (컴팩트 그리드)
@@ -334,6 +362,8 @@
     .research-line .r { display: grid; grid-template-columns: auto 1fr; gap: .7rem; font-size: .9rem; color: var(--color-muted); }
     .research-line .r .tag { font-family: var(--font-mono); font-size: .68rem; font-weight: 700; color: var(--color-accent-dk); background: var(--color-accent-soft); padding: .15rem .5rem; border-radius: 5px; height: fit-content; white-space: nowrap; }
     .research-line .r b { color: var(--color-text); }
+    .r__period { font-family: var(--font-mono); font-size: .72rem; color: var(--color-faint); white-space: nowrap; }
+    .muted-note { color: var(--color-faint); font-size: .9em; }
 
     /* ============================================================
        8. 핵심 역량 + 블로그
@@ -427,11 +457,11 @@
         <div class="hero__text">
           <span class="hero__eyebrow"><span class="dot"></span>정책 · 기술 · 사업을 잇는 12년</span>
           <h1>
-            맨바닥에서 <span class="accent">80억</span>을 만든 기획자,<br />
-            다음은 <span class="accent">AI</span>입니다.
+            <span class="hero__line">맨바닥에서 <span class="accent">80억</span>을 만든 사업개발 전문가,</span>
+            <span class="hero__line">다음은 <span class="accent">AI</span>입니다.</span>
             <span class="hero__role">정책·기술·사업을 잇는 AI 서비스 기획자</span>
           </h1>
-          <p class="hero__philo">"기술의 유무가 아니라, 그것을 조직과 제품에 담는 방식이 성패를 가른다."</p>
+          <p class="hero__philo">"기술의 유무가 아니라, AI를 조직과 제품에 담는 방식이 성패를 가른다."</p>
           <p class="hero__desc">
             정책 기획의 논리, AI 연구개발의 기술 이해, 엔터프라이즈 사업개발의 시장 감각을 하나로 잇습니다.
             최근에는 LLM 기반 서비스를 직접 기획·개발해 사내 정식 제품으로 출시했습니다.
@@ -575,12 +605,7 @@
                   <div class="pac">
                     <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">부동산 임장(현장 답사) 시 보고 들은 정보가 휘발되고, 현장에서 손으로 기록하기 어려움.</span></div>
                     <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">음성 인식과 AI를 기반으로 <strong>임장 현장 경험을 보조하는 모바일 서비스</strong>를 기획. 제품 요구사항 정의서(PRD)를 기준으로 단계별 개발 및 품질 검증을 진행 중.</span></div>
-                    <div class="pac__item pac__item--result"><span class="pac__k">현황</span><span class="pac__v">단독으로 기획·설계·개발 진행 중.
-                      <a class="repo-link" href="https://github.com/jaimo012/ImjangTalk" target="_blank" rel="noopener">
-                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10 10 0 0 0 22 12 10 10 0 0 0 12 2z"/></svg>
-                        github.com/jaimo012/ImjangTalk
-                      </a>
-                    </span></div>
+                    <div class="pac__item pac__item--result"><span class="pac__k">현황</span><span class="pac__v">단독으로 기획·설계·개발 진행 중 <span class="muted-note">(저장소 비공개)</span>. 음성 인식 정확도와 현장 사용성을 중심으로 단계별 품질 검증 중.</span></div>
                   </div>
                 </div>
               </div>
@@ -603,10 +628,22 @@
               <div class="proj__bodywrap">
                 <div class="proj__body" id="proj-body-3">
                   <p class="proj__role">역할 · "사람이 해야만 하는 일과 AI가 더 잘하는 일"을 분해해 직접 개발·운영</p>
-                  <ul class="autolist">
-                    <li><span class="a-name">잠재 고객 발굴</span><span class="a-stack">Python · Selenium</span></li>
-                    <li><span class="a-name">개인화 제안 메일</span><span class="a-stack">AI API · 메일</span></li>
-                    <li><span class="a-name">영업 통화 분석·기록</span><span class="a-stack">AI API · Sheets</span></li>
+                  <div class="autocards">
+                    <article class="autocard">
+                      <div class="autocard__top"><span class="autocard__name">잠재 고객 발굴</span><span class="a-stack">Python · Selenium</span></div>
+                      <p class="autocard__desc">채용 사이트를 수집해 <b>채용 중인 기업(잠재 고객)</b> 정보를 매일 자동 적재. 사내 타 영업 조직에도 확산 적용 — 신규 고객 발굴 리소스를 대폭 절감하고 영업 파이프라인 창출에 기여.</p>
+                    </article>
+                    <article class="autocard">
+                      <div class="autocard__top"><span class="autocard__name">개인화 제안 메일</span><span class="a-stack">AI API · 메일</span></div>
+                      <p class="autocard__desc">고객사 채용공고를 분석해 <b>기업 상황에 맞춘 1:1 제안 메일 초안</b>을 자동 생성. 사내 타 조직에도 확산 — 작성 시간을 단축하고 맞춤 메시지로 제안 응답률을 개선.</p>
+                    </article>
+                    <article class="autocard">
+                      <div class="autocard__top"><span class="autocard__name">영업 통화 분석·기록</span><span class="a-stack">AI API · Sheets</span></div>
+                      <p class="autocard__desc">통화 녹음을 분석해 <b>업무 유의미성을 판별</b>하고 핵심 내용을 요약해 고객 관리 시트에 자동 기록 — 고객 접점을 자산화하고 담당자 변경 시 인수인계를 개선.</p>
+                    </article>
+                  </div>
+                  <p class="autolist__label">그 외 직접 개발·운영 중인 자동화</p>
+                  <ul class="autolist autolist--mini">
                     <li><span class="a-name">회의록 자동 생성</span><span class="a-stack">STT · AI API</span></li>
                     <li><span class="a-name">경쟁사 동향 모니터링</span><span class="a-stack">Python · Slack</span></li>
                     <li><span class="a-name">문의 자동 응대</span><span class="a-stack">AI API · Slack</span></li>
@@ -629,64 +666,135 @@
         <span class="section__label">Experience</span>
         <h2 class="section__title">경력 <span class="mono" style="font-size:.55em; color:var(--color-faint); font-weight:500;">총 12년 3개월</span></h2>
         <div class="career">
-          <article class="job job--lead">
-            <div class="job__logo"><img src="images/logos/kmong.png" alt="크몽 로고" /></div>
-            <div class="job__main">
-              <div class="job__top">
-                <span class="job__co">크몽</span>
-                <span class="job__role">엔터프라이즈 사업개발 · 비즈니스 기획 팀장</span>
-                <span class="job__period">2023.04 ~ 현재</span>
-              </div>
-              <p class="job__desc">국내 1위 프리랜서 플랫폼의 B2B 전담 조직. 엔터프라이즈 IT 아웃소싱 사업을 맨바닥에서 설계해 <span class="mono">연 80억</span> 신규 수주로 성장 견인(<b>목표 114% 초과</b>). 고객 발굴·이력서 분석·후보 매칭 AI 세일즈 시스템을 직접 기획·개발.</p>
-            </div>
+          <article class="job job--lead is-open">
+            <button class="job__head" aria-expanded="true" aria-controls="job-body-1">
+              <span class="job__logo"><img src="images/logos/kmong.png" alt="크몽 로고" /></span>
+              <span class="job__main">
+                <span class="job__top">
+                  <span class="job__co">크몽</span>
+                  <span class="job__role">엔터프라이즈 사업개발 · 비즈니스 기획 팀장</span>
+                  <span class="job__period">2023.04 ~ 현재</span>
+                </span>
+                <span class="job__desc">국내 1위 프리랜서 플랫폼의 B2B 전담 조직. 엔터프라이즈 IT 아웃소싱 사업을 맨바닥에서 설계해 <span class="mono">연 80억</span> 신규 수주로 성장 견인(<b>목표 114% 초과</b>).</span>
+              </span>
+              <span class="job__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="job__reveal"><div class="job__bodywrap"><div class="job__body"><div class="job__body-inner">
+              <p class="job__sub">주요 활동</p>
+              <ul class="job__list">
+                <li>중대형 고객사가 없던 초기 단계에서 <b>엔터프라이즈 시장 진입 전략</b>을 수립하고 멀티 채널 영업 파이프라인을 처음부터 설계</li>
+                <li>"이 업무를 사람이 꼭 해야 하는가"를 기준으로 업무를 분해, <b>파이썬·AI로 고객 발굴·이력서 분석·후보 매칭·경쟁사 모니터링 시스템을 직접 개발</b> (이력서 분석은 사내 정식 제품으로 전환)</li>
+                <li>팀 성과지표(OKR·KPI)와 역할·책임 체계를 설계하고, 주·월·분기 파이프라인 분석으로 경영진 의사결정 지원</li>
+                <li>시제품·기획안을 먼저 만들어 요구사항을 구체적으로 전달하며 기술과 사업 사이의 간극을 조율</li>
+                <li>콜드 영업, 산업 박람회 현장 영업, 경영진 네트워킹 등 전방위 채널로 의사결정권자 미팅 성사</li>
+              </ul>
+              <p class="job__sub">주요 성과</p>
+              <ul class="job__list job__list--result">
+                <li>초기 단계에서 <span class="mono">연 80억</span> 규모 신규 수주로 성장 견인, <b>연간 목표 114% 초과 달성</b></li>
+                <li>직접 발굴한 대형 고객사 기준 <b>팀 내 계약금액 기여도 90% 이상</b></li>
+                <li>경쟁 입찰을 통해 <b>최상위 등급 전략 파트너사로 선정</b>, 경쟁사 진입장벽 구축</li>
+                <li>직접 개발한 AI 자동화 도입으로 반복 업무를 제거하고 리소스를 고부가가치 업무로 재배치</li>
+              </ul>
+            </div></div></div></div>
           </article>
 
           <article class="job">
-            <div class="job__logo"><img src="images/logos/kmong.png" alt="크몽 로고" /></div>
-            <div class="job__main">
-              <div class="job__top">
-                <span class="job__co">크몽</span>
-                <span class="job__role">스타트업 사업개발 · 채널 기획 팀장</span>
-                <span class="job__period">2022.04 ~ 2023.03</span>
-              </div>
-              <p class="job__desc">초기 창업자 대상 IT 아웃소싱 비즈니스의 시장 진입 전략·신규 채널 기획. 실적 부진 구간(월 3천만원)을 1년 만에 <span class="mono">월 3억(10×)</span>으로 반전, 3,000건+ 자체 DB로 자생적 영업 파이프라인 구축.</p>
-            </div>
+            <button class="job__head" aria-expanded="false" aria-controls="job-body-2">
+              <span class="job__logo"><img src="images/logos/kmong.png" alt="크몽 로고" /></span>
+              <span class="job__main">
+                <span class="job__top">
+                  <span class="job__co">크몽</span>
+                  <span class="job__role">스타트업 사업개발 · 채널 기획 팀장</span>
+                  <span class="job__period">2022.04 ~ 2023.03</span>
+                </span>
+                <span class="job__desc">초기 창업자 대상 IT 아웃소싱 비즈니스의 시장 진입 전략·신규 채널 기획. 실적 부진 구간을 1년 만에 <span class="mono">월 3억(10×)</span>으로 반전.</span>
+              </span>
+              <span class="job__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="job__reveal"><div class="job__bodywrap"><div class="job__body"><div class="job__body-inner">
+              <p class="job__sub">주요 활동</p>
+              <ul class="job__list">
+                <li>정부 지원사업 시즌(공고·선정·집행)에 맞춰 <b>웨비나·뉴스레터·교육 콘텐츠</b>를 기획해 잠재 고객을 확보·육성</li>
+                <li>투자사·창업지원기관 대상 <b>제휴 채널</b>을 설계하고, 협약 기반 기관 연계 파이프라인으로 보육기업 외주 수요 선점</li>
+                <li>국가 연구개발 수행 정보 등 공공데이터를 분석해 <b>예산 보유 타겟 기업</b>을 추출하고 시나리오형 콜드메일 캠페인 설계</li>
+              </ul>
+              <p class="job__sub">주요 성과</p>
+              <ul class="job__list job__list--result">
+                <li>실적 부진 구간(월 3천만원)을 1년 만에 <span class="mono">월 3억 규모(10배)</span>로 성장</li>
+                <li><b>3,000건 이상 자체 데이터베이스</b>를 구축해 인바운드 의존 없는 자생적 영업 파이프라인 완성</li>
+              </ul>
+            </div></div></div></div>
           </article>
 
           <article class="job">
-            <div class="job__logo"><img src="images/logos/kiindex.jpg" alt="한국산업인덱스 로고" /></div>
-            <div class="job__main">
-              <div class="job__top">
-                <span class="job__co">한국산업인덱스</span>
-                <span class="job__role">정책컨설팅 책임연구원</span>
-                <span class="job__period">2020.01 ~ 2022.03</span>
-              </div>
-              <p class="job__desc">중소기업 연구개발 지원체계의 디지털 전환을 위한 신규 정부사업 기획·타당성 분석. 빅데이터 기반 R&amp;D 지원시스템, 사용자 참여형 리빙랩, 지역 미래 전략산업 로드맵 수립을 주도.</p>
-            </div>
+            <button class="job__head" aria-expanded="false" aria-controls="job-body-3">
+              <span class="job__logo"><img src="images/logos/kiindex.jpg" alt="한국산업인덱스 로고" /></span>
+              <span class="job__main">
+                <span class="job__top">
+                  <span class="job__co">한국산업인덱스</span>
+                  <span class="job__role">정책컨설팅 책임연구원</span>
+                  <span class="job__period">2020.01 ~ 2022.03</span>
+                </span>
+                <span class="job__desc">중소기업 연구개발 지원체계의 디지털 전환을 위한 신규 정부사업 기획·타당성 분석.</span>
+              </span>
+              <span class="job__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="job__reveal"><div class="job__bodywrap"><div class="job__body"><div class="job__body-inner">
+              <p class="job__sub">주요 활동 및 성과</p>
+              <ul class="job__list">
+                <li><b>빅데이터 기반 R&amp;D 지원시스템 기획</b> — 정부기관 발주 타당성 연구로, 연구개발 기획·선정·평가 전 과정에 빅데이터 분석을 도입하는 객관적 의사결정 논리를 설계·검증</li>
+                <li><b>사용자 참여형 리빙랩 사업 기획</b> — 최종 사용자가 문제 해결에 참여하는 방법론을 공공 연구개발에 이식, 시장 피드백을 즉시 반영하는 과정 정립</li>
+                <li><b>지역 미래 전략산업 로드맵 수립</b> — 아산시·충남 산업 가치사슬 데이터를 분석해 AI·디지털 전환이 시급한 타겟 분야 선정</li>
+                <li>지역스타기업 육성, 뿌리산업 스마트공정 등 주요 국책사업의 <b>성과 분석·개선방안 컨설팅</b></li>
+              </ul>
+            </div></div></div></div>
           </article>
 
           <article class="job">
-            <div class="job__logo"><img src="images/logos/logifocus.png" alt="로지포커스 로고" /></div>
-            <div class="job__main">
-              <div class="job__top">
-                <span class="job__co">로지포커스</span>
-                <span class="job__role">지능물류연구소 기획팀 대리</span>
-                <span class="job__period">2018.09 ~ 2019.12</span>
-              </div>
-              <p class="job__desc">물류에 AI를 접목한 신규 서비스를 기획부터 실증까지 주도. 정부 R&amp;D <span class="mono">13.4억</span> 사업비 확보, AI 수요예측·인력배치로 <b>예측오차 ±10%→±3%(약 70% 개선)</b>, 관련 공모전 2년 연속 최우수상.</p>
-            </div>
+            <button class="job__head" aria-expanded="false" aria-controls="job-body-4">
+              <span class="job__logo"><img src="images/logos/logifocus.png" alt="로지포커스 로고" /></span>
+              <span class="job__main">
+                <span class="job__top">
+                  <span class="job__co">로지포커스</span>
+                  <span class="job__role">지능물류연구소 기획팀 대리</span>
+                  <span class="job__period">2018.09 ~ 2019.12</span>
+                </span>
+                <span class="job__desc">물류에 AI를 접목한 신규 서비스를 기획부터 실증까지 주도. 정부 R&amp;D <span class="mono">13.4억</span> 사업비 확보.</span>
+              </span>
+              <span class="job__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="job__reveal"><div class="job__bodywrap"><div class="job__body"><div class="job__body-inner">
+              <p class="job__sub">주요 활동 및 성과</p>
+              <ul class="job__list">
+                <li>정부 연구개발 과제 수주로 <span class="mono">13.4억</span> 사업비 확보 — <b>AI 반품 시스템 6.42억 · AI 미스터 센터장 4.0억 · 반품물류 1.5억 · IoT 미세먼지 1.49억</b></li>
+                <li>물류창고 인력 최적화 문제에서 출발해, 단순 물동량 예측을 넘어 딥러닝 수요예측에서 현장 인력 배치 최적화로 <b>사업 모델을 구체화·타당성 검증</b></li>
+                <li>AI 수요예측·인력배치 시스템을 기획·실증해 <b>예측 오차율을 ±10%에서 ±3%로 약 70% 개선</b></li>
+                <li>국가 연구기관의 인공지능 프레임워크를 선제 도입, 관련 <b>공모전 2년 연속 최우수상(2018·2019)</b></li>
+              </ul>
+            </div></div></div></div>
           </article>
 
           <article class="job">
-            <div class="job__logo"><img src="images/logos/kiindex.jpg" alt="한국산업인덱스 로고" /></div>
-            <div class="job__main">
-              <div class="job__top">
-                <span class="job__co">한국산업인덱스</span>
-                <span class="job__role">정책컨설팅 선임연구원</span>
-                <span class="job__period">2013.07 ~ 2018.04</span>
-              </div>
-              <p class="job__desc">정부 산업·R&amp;D 정책 타당성 조사·성과분석 컨설팅 <b>총 44건</b>. 국가혁신클러스터 전략을 기획·제안해 <b>100대 국정과제로 채택</b>, 1,000억 규모 사업의 예산 삭감 방어 논리 개발, 논리모형 기반 성과분석 방법론 정립.</p>
-            </div>
+            <button class="job__head" aria-expanded="false" aria-controls="job-body-5">
+              <span class="job__logo"><img src="images/logos/kiindex.jpg" alt="한국산업인덱스 로고" /></span>
+              <span class="job__main">
+                <span class="job__top">
+                  <span class="job__co">한국산업인덱스</span>
+                  <span class="job__role">정책컨설팅 선임연구원</span>
+                  <span class="job__period">2013.07 ~ 2018.04</span>
+                </span>
+                <span class="job__desc">정부 산업·R&amp;D 정책 타당성 조사·성과분석 컨설팅 <b>총 44건</b>. 국가혁신클러스터를 <b>100대 국정과제로 채택</b>.</span>
+              </span>
+              <span class="job__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="job__reveal"><div class="job__bodywrap"><div class="job__body"><div class="job__body-inner">
+              <p class="job__sub">주요 활동 및 성과</p>
+              <ul class="job__list">
+                <li><b>국가혁신클러스터 전략을 기획·제안</b>해 대통령 핵심 공약 및 100대 국정과제로 채택 — 이후 법적 근거·예산·세부 운영방안 설계를 위한 실무 연구·보고서를 전담</li>
+                <li>정부 평가에 대응해 <b>1,000억원 규모 지역특화산업육성사업의 예산 삭감을 방어</b>하는 핵심 논리를 개발, 수혜기업 전수 데이터 분석으로 예산 배분 최적화 가이드라인 제안</li>
+                <li>추상적 정책 목표를 측정 가능한 지표로 변환하는 <b>논리모형 기반 성과분석 방법론을 정립</b>, 연평균 약 3억원 규모 연구용역 매출 확보</li>
+              </ul>
+            </div></div></div></div>
           </article>
         </div>
       </div>
@@ -724,7 +832,9 @@
             <div class="lic-item"><span class="t">사물인터넷 지식능력검정</span><span class="y">2018.11</span></div>
             <div class="lic-item"><span class="t">유통관리사 2급</span><span class="y">2009.10</span></div>
             <div class="research-line">
-              <div class="r"><span class="tag">멘토·위원</span><span>ICT콤플렉스 전문가 멘토 · 창업지원사업 평가위원 · 중소기업기술개발지원사업 평가위원</span></div>
+              <div class="r"><span class="tag">멘토</span><span><b>ICT콤플렉스 전문가 멘토</b> <span class="r__period">2023.06 ~ 현재</span> — 예비·초기 창업자 대상 기술·사업화 멘토링</span></div>
+              <div class="r"><span class="tag">평가위원</span><span><b>창업지원사업 평가위원</b> <span class="r__period">2022.12 ~ 현재</span> — 정부 창업지원사업 선정·성과 평가</span></div>
+              <div class="r"><span class="tag">평가위원</span><span><b>중소기업기술개발지원사업 평가위원</b> <span class="r__period">2021.03 ~ 현재</span> — 중소기업 R&amp;D 과제 타당성 평가</span></div>
               <div class="r"><span class="tag">논문</span><span>AI 기반 창고관리시스템 / 자동화 반품물류 시스템 <b>2편</b> (한국통신학회, 공동저자)</span></div>
               <div class="r"><span class="tag">특허</span><span>창고관리시스템의 주문상품 배송포장 장치 <b>1건</b> (10-2019-0159752)</span></div>
             </div>
@@ -898,17 +1008,19 @@
         header.classList.toggle('is-scrolled', window.scrollY > 8);
       }, { passive: true });
 
-      /* ---- 아코디언 (이벤트 위임) ---- */
-      var accordion = document.querySelector('.accordion');
-      if (accordion) {
-        accordion.addEventListener('click', function (e) {
-          var head = e.target.closest('.proj__head');
+      /* ---- 아코디언 (프로젝트·경력 공통, 이벤트 위임) ---- */
+      function bindAccordion(containerSel, headSel, cardSel) {
+        var box = document.querySelector(containerSel);
+        if (!box) return;
+        box.addEventListener('click', function (e) {
+          var head = e.target.closest(headSel);
           if (!head) return;
-          var card = head.closest('.proj');
-          var open = card.classList.toggle('is-open');
+          var open = head.closest(cardSel).classList.toggle('is-open');
           head.setAttribute('aria-expanded', String(open));
         });
       }
+      bindAccordion('.accordion', '.proj__head', '.proj');
+      bindAccordion('.career', '.job__head', '.job');
 
       /* ---- 라이트박스 (상장 확대) ---- */
       var lb = document.getElementById('lightbox');
