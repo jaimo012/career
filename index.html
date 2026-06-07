@@ -841,9 +841,9 @@
             <div class="proj__reveal"><div class="proj__bodywrap"><div class="proj__body" id="proj-body-12">
               <p class="proj__role">역할 · 기획 → 개발 → 운영 전 과정 단독 수행</p>
               <div class="pac">
-                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">급매물은 등록 직후 빠지기 때문에 발견 즉시 연락해야 하지만, 수동 추적으로는 놓치기 일쑤였다. 게다가 네이버 부동산은 <strong>크롤링 차단이 강해</strong> 일반적인 방법으로는 매물 데이터 수집 자체가 막혔다.</span></div>
+                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v"><strong>내가 원하는 조건(지역·가격·면적)의 매물</strong>을 제때 확인하고 싶었지만, 급매는 등록 직후 빠지는 데다 네이버 부동산은 <strong>크롤링 차단이 강해</strong> 일반적인 방법으로는 매물 데이터 수집 자체가 막혔다.</span></div>
                 <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">Playwright로 <strong>봇 탐지를 우회</strong>(토큰 캡처·페이지 구동 방식 fetch)해 12개 지역 매물을 하루 2회 수집. <strong>국토부 실거래가 OpenAPI와 카카오 주소 API를 haversine 공간 매칭(≤100m)으로 연결</strong>해 단지와 실거래를 자동 매핑하고, 급매 3종(절대가·가격인하·실거래가 대비)을 판정. 단지별로 Gemini가 진단 요약을 만들어 Slack 카드로 발송한다.</span></div>
-                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">급매 후보를 발견 즉시 Slack으로 받아 중개사에게 바로 연락하는 환경을 구축했다. 가격 변동 없는 매물 fetch를 건너뛰어 수집 주기를 <span class="hl">3시간에서 30분으로</span> 단축했고, 자동화 테스트 1,700여 건으로 안정화했다.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">막혀 있던 사이트를 뚫어 <strong>내가 정한 조건에 맞는 급매 후보</strong>만 발견 즉시 Slack으로 받아, 바로 확인하고 중개사에 연락하는 환경을 만들었다. 가격 변동 없는 매물 fetch를 건너뛰어 수집 주기를 <span class="hl">3시간에서 30분으로</span> 단축했고, 자동화 테스트 1,700여 건으로 안정화했다.</span></div>
               </div>
             </div></div></div>
           </article>
@@ -857,16 +857,16 @@
                   <span class="proj__title">BILZ 영수증 수집 자동화</span>
                   <span class="proj__cat">개인 프로젝트</span>
                 </span>
-                <span class="proj__tag">Kotlin · Jetpack Compose · CameraX · Drive API</span>
+                <span class="proj__tag">Android(Kotlin) · GAS · AI 파싱 · 캘린더 연동</span>
               </span>
               <span class="proj__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
             </button>
             <div class="proj__reveal"><div class="proj__bodywrap"><div class="proj__body" id="proj-body-13">
-              <p class="proj__role">역할 · 기획 → 개발 단독 수행 (Android 앱)</p>
+              <p class="proj__role">역할 · 앱부터 백엔드 자동화까지 기획·개발 단독 수행</p>
               <div class="pac">
-                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">영수증을 일일이 촬영하고 이름을 붙여 정리·업로드하는 과정이 번거롭고 자주 누락됐다.</span></div>
-                <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">촬영하면 이미지 크롭, <strong>날짜·용도 기반 파일명 자동 생성</strong>, 로컬 저장, Google Drive 업로드까지 한 흐름으로 처리하는 Android 앱을 직접 개발(Kotlin·Jetpack Compose·CameraX).</span></div>
-                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">촬영에서 업로드, 다음 촬영까지 <strong>끊김 없이 반복</strong>돼 영수증 정리·보관을 현장에서 즉시 끝낸다.</span></div>
+                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">영업하며 받는 영수증을 지갑에 수북이 쌓아 두다 분실·정리 누락이 잦았다. 상용 경비 솔루션은 <strong>회사 지출결의 양식과 맞지 않는 경우</strong>가 많았다.</span></div>
+                <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">사진만 찍으면 앱이 Google Drive에 올리고, <strong>GAS에서 AI가 영수증을 파싱</strong>해 <strong>회사 지출결의 양식에 맞춰 자동 정리</strong>한다. 양식을 직접 커스터마이징했고, 캘린더와 연동해 어떤 일정에서 나온 영수증인지 바로 메모할 수 있게 했다.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">지갑에 영수증을 들고 다닐 필요 없이, 현장에서 <strong>사진만 찍어 두면 지출결의까지 자동으로 정리</strong>된다.</span></div>
               </div>
             </div></div></div>
           </article>
