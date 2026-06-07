@@ -281,21 +281,7 @@
     .repo-link:hover { border-bottom-color: var(--color-accent); }
     .repo-link svg { width: 1rem; height: 1rem; }
     /* 자동화 7종 그리드 */
-    .autolist { display: grid; gap: .6rem; margin-top: .3rem; }
-    .autolist li { display: grid; grid-template-columns: 1fr auto; gap: .5rem 1rem; align-items: center; padding: .7rem .9rem; background: var(--color-bg); border: 1px solid var(--color-line); border-radius: var(--radius-sm); }
-    .autolist .a-name { font-weight: 700; font-size: .92rem; }
-    .autolist .a-stack { font-family: var(--font-mono); font-size: .68rem; color: var(--color-muted); background: var(--color-surface); border: 1px solid var(--color-line); padding: .15rem .45rem; border-radius: 5px; white-space: nowrap; }
-    @media (min-width: 680px) { .autolist { grid-template-columns: 1fr 1fr; } }
-    /* 상위 강조 자동화 3종 (상세 카드) */
-    .autocards { display: grid; gap: .7rem; margin-top: .3rem; }
-    .autocard { background: var(--color-bg); border: 1px solid var(--color-line); border-radius: var(--radius-sm); padding: .85rem 1rem; }
-    .autocard__top { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .7rem; margin-bottom: .4rem; }
-    .autocard__name { font-weight: 800; font-size: .98rem; }
-    .autocard__desc { color: var(--color-muted); font-size: .9rem; }
-    .autocard__desc b { color: var(--color-text); font-weight: 700; }
-    .autolist__label { font-family: var(--font-mono); font-size: .72rem; font-weight: 700; color: var(--color-faint); letter-spacing: .04em; margin: 1.15rem 0 .55rem; }
-    .autolist--mini li { padding: .55rem .8rem; }
-    .autolist--mini .a-name { font-weight: 600; font-size: .87rem; }
+    /* 자동화 항목은 §5 대표 프로젝트에 개별 카드(03~09)로 분리됨 */
 
     /* ============================================================
        6. 경력
@@ -623,49 +609,144 @@
             </div>
           </article>
 
-          <!-- 프로젝트 3 -->
+          <!-- 03 잠재 고객 발굴 -->
           <article class="proj">
             <button class="proj__head" aria-expanded="false" aria-controls="proj-body-3">
               <span class="proj__no">03</span>
               <span class="proj__heading">
-                <span class="proj__title">AI 기반 업무 자동화 시스템</span>
-                <span class="proj__tag">7종 · 직접 기획·개발해 사내 운영 중</span>
+                <span class="proj__title">잠재 고객 발굴 자동화</span>
+                <span class="proj__tag">Python · Selenium · 사내 운영 중</span>
               </span>
-              <span class="proj__chev" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-              </span>
+              <span class="proj__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
             </button>
-            <div class="proj__reveal">
-              <div class="proj__bodywrap">
-                <div class="proj__body" id="proj-body-3">
-                  <p class="proj__role">역할 · "사람이 해야만 하는 일과 AI가 더 잘하는 일"을 분해해 직접 개발·운영</p>
-                  <div class="autocards">
-                    <article class="autocard">
-                      <div class="autocard__top"><span class="autocard__name">잠재 고객 발굴</span><span class="a-stack">Python · Selenium</span></div>
-                      <p class="autocard__desc">채용 사이트를 수집해 <b>채용 중인 기업(잠재 고객)</b> 정보를 매일 자동 적재. 사내 타 영업 조직에도 확산 적용 — 신규 고객 발굴 리소스를 대폭 절감하고 영업 파이프라인 창출에 기여.</p>
-                    </article>
-                    <article class="autocard">
-                      <div class="autocard__top"><span class="autocard__name">개인화 제안 메일</span><span class="a-stack">AI API · 메일</span></div>
-                      <p class="autocard__desc">고객사 채용공고를 분석해 <b>기업 상황에 맞춘 1:1 제안 메일 초안</b>을 자동 생성. 사내 타 조직에도 확산 — 작성 시간을 단축하고 맞춤 메시지로 제안 응답률을 개선.</p>
-                    </article>
-                    <article class="autocard">
-                      <div class="autocard__top"><span class="autocard__name">영업 통화 분석·기록</span><span class="a-stack">AI API · Sheets</span></div>
-                      <p class="autocard__desc">통화 녹음을 분석해 <b>업무 유의미성을 판별</b>하고 핵심 내용을 요약해 고객 관리 시트에 자동 기록 — 고객 접점을 자산화하고 담당자 변경 시 인수인계를 개선.</p>
-                    </article>
-                  </div>
-                  <p class="autolist__label">그 외 직접 개발·운영 중인 자동화</p>
-                  <ul class="autolist autolist--mini">
-                    <li><span class="a-name">회의록 자동 생성</span><span class="a-stack">STT · AI API</span></li>
-                    <li><span class="a-name">경쟁사 동향 모니터링</span><span class="a-stack">Python · Slack</span></li>
-                    <li><span class="a-name">문의 자동 응대</span><span class="a-stack">AI API · Slack</span></li>
-                    <li><span class="a-name">뉴스레터 큐레이션</span><span class="a-stack">포털 API · AI</span></li>
-                  </ul>
-                  <div class="pac" style="margin-top:1rem">
-                    <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">반복 업무를 제거해 리소스를 고부가가치 업무로 재배치. 잠재고객 발굴·제안메일·회의록 시스템은 <strong>사내 타 조직으로 확산</strong> 적용.</span></div>
-                  </div>
-                </div>
+            <div class="proj__reveal"><div class="proj__bodywrap"><div class="proj__body" id="proj-body-3">
+              <p class="proj__role">역할 · 기획 → 개발 → 사내 운영 전 과정 단독 수행</p>
+              <div class="pac">
+                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">신규 고객사를 영업 담당이 일일이 수기로 탐색 — 발굴에 과도한 시간이 들고 영업 파이프라인이 마름.</span></div>
+                <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">파이썬·셀레늄으로 채용 사이트를 매일 수집해, <strong>채용 중인 기업(= 인력 수요가 있는 잠재 고객)</strong>을 자동 추출·적재.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">신규 고객 발굴 리소스를 <strong>대폭 절감</strong>하고 자생적 영업 파이프라인 창출. 사내 타 영업 조직에도 확산 적용.</span></div>
               </div>
-            </div>
+            </div></div></div>
+          </article>
+
+          <!-- 04 개인화 제안 메일 -->
+          <article class="proj">
+            <button class="proj__head" aria-expanded="false" aria-controls="proj-body-4">
+              <span class="proj__no">04</span>
+              <span class="proj__heading">
+                <span class="proj__title">개인화 제안 메일 자동화</span>
+                <span class="proj__tag">AI API · 메일 연동 · 사내 운영 중</span>
+              </span>
+              <span class="proj__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="proj__reveal"><div class="proj__bodywrap"><div class="proj__body" id="proj-body-4">
+              <p class="proj__role">역할 · 기획 → 개발 → 사내 운영 전 과정 단독 수행</p>
+              <div class="pac">
+                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">고객사마다 맞춤 제안을 일일이 작성하기엔 시간이 부족하고, 일반 메일은 응답률이 저조.</span></div>
+                <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">AI로 고객사 채용공고를 분석해 <strong>기업 상황에 맞춘 1:1 제안 메일 초안</strong>을 자동 생성.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">메일 작성 시간을 단축하고 맞춤 메시지로 <strong>제안 응답률 개선</strong>. 사내 타 조직에도 확산 적용.</span></div>
+              </div>
+            </div></div></div>
+          </article>
+
+          <!-- 05 영업 통화 분석·기록 -->
+          <article class="proj">
+            <button class="proj__head" aria-expanded="false" aria-controls="proj-body-5">
+              <span class="proj__no">05</span>
+              <span class="proj__heading">
+                <span class="proj__title">영업 통화 분석·기록 자동화</span>
+                <span class="proj__tag">AI API · Google Sheets · 사내 운영 중</span>
+              </span>
+              <span class="proj__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="proj__reveal"><div class="proj__bodywrap"><div class="proj__body" id="proj-body-5">
+              <p class="proj__role">역할 · 기획 → 개발 → 사내 운영 전 과정 단독 수행</p>
+              <div class="pac">
+                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">영업 통화 내용이 기록되지 않아 고객 접점이 휘발되고, 담당자 변경 시 인수인계가 어려움.</span></div>
+                <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">AI로 통화 녹음을 분석해 <strong>업무 유의미성을 판별</strong>하고 핵심 내용을 요약, 고객 관리 시트에 자동 기록.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">고객 접점의 <strong>자산화</strong>, 담당자 변경 시 인수인계 품질 개선.</span></div>
+              </div>
+            </div></div></div>
+          </article>
+
+          <!-- 06 회의록 자동 생성 -->
+          <article class="proj">
+            <button class="proj__head" aria-expanded="false" aria-controls="proj-body-6">
+              <span class="proj__no">06</span>
+              <span class="proj__heading">
+                <span class="proj__title">회의록 자동 생성</span>
+                <span class="proj__tag">음성 인식(STT) · AI API · 사내 운영 중</span>
+              </span>
+              <span class="proj__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="proj__reveal"><div class="proj__bodywrap"><div class="proj__body" id="proj-body-6">
+              <p class="proj__role">역할 · 기획 → 개발 → 사내 운영 전 과정 단독 수행</p>
+              <div class="pac">
+                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">회의록 수기 작성에 시간이 소요되고, 미참석자에게 정보 공유가 누락.</span></div>
+                <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">음성 인식으로 미팅 녹음을 텍스트로 변환한 뒤, AI로 <strong>핵심 안건·실행 항목 중심 회의록</strong>을 자동 생성.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">작성 리소스 절감, <strong>사내 다수 구성원이 사용</strong>하며 정보 공유 활성화.</span></div>
+              </div>
+            </div></div></div>
+          </article>
+
+          <!-- 07 경쟁사 동향 모니터링 -->
+          <article class="proj">
+            <button class="proj__head" aria-expanded="false" aria-controls="proj-body-7">
+              <span class="proj__no">07</span>
+              <span class="proj__heading">
+                <span class="proj__title">경쟁사 동향 모니터링</span>
+                <span class="proj__tag">Python · Selenium · Slack</span>
+              </span>
+              <span class="proj__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="proj__reveal"><div class="proj__bodywrap"><div class="proj__body" id="proj-body-7">
+              <p class="proj__role">역할 · 기획 → 개발 → 사내 운영 전 과정 단독 수행</p>
+              <div class="pac">
+                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">경쟁사 동향 파악이 늦어 시장 대응과 이탈 고객 재유치 기회를 놓침.</span></div>
+                <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">파이썬·셀레늄으로 경쟁사 의뢰 현황을 실시간 수집·분석하고, 주요 건 발생 시 <strong>슬랙으로 즉시 알림</strong>.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">동향 파악·대응 시간 단축, <strong>이탈 고객 재유치 기회 발굴</strong>. 마케팅팀이 데이터 활용 중.</span></div>
+              </div>
+            </div></div></div>
+          </article>
+
+          <!-- 08 문의 자동 응대 -->
+          <article class="proj">
+            <button class="proj__head" aria-expanded="false" aria-controls="proj-body-8">
+              <span class="proj__no">08</span>
+              <span class="proj__heading">
+                <span class="proj__title">문의 자동 응대</span>
+                <span class="proj__tag">AI API · Slack 연동 · 사내 운영 중</span>
+              </span>
+              <span class="proj__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="proj__reveal"><div class="proj__bodywrap"><div class="proj__body" id="proj-body-8">
+              <p class="proj__role">역할 · 기획 → 개발 → 사내 운영 전 과정 단독 수행</p>
+              <div class="pac">
+                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">고객 문의 응답이 지연되거나 누락되는 문제.</span></div>
+                <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">AI로 고객 메일의 의도를 분석해 <strong>단순 문의는 자동 회신</strong>하고, 중요 의뢰는 담당자에게 즉시 연동(슬랙).</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">평균 응답 시간 단축, <strong>응답 누락 최소화</strong>.</span></div>
+              </div>
+            </div></div></div>
+          </article>
+
+          <!-- 09 뉴스레터 큐레이션 -->
+          <article class="proj">
+            <button class="proj__head" aria-expanded="false" aria-controls="proj-body-9">
+              <span class="proj__no">09</span>
+              <span class="proj__heading">
+                <span class="proj__title">뉴스레터 큐레이션</span>
+                <span class="proj__tag">포털 API · AI API · 사내 운영 중</span>
+              </span>
+              <span class="proj__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="proj__reveal"><div class="proj__bodywrap"><div class="proj__body" id="proj-body-9">
+              <p class="proj__role">역할 · 기획 → 개발 → 사내 운영 전 과정 단독 수행</p>
+              <div class="pac">
+                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">고객 관계 유지를 위한 정기 뉴스레터 콘텐츠 작성 부담.</span></div>
+                <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">포털 API로 타겟 업계 최신 뉴스를 수집하고, AI로 핵심 안건을 도출해 <strong>뉴스레터 초안을 자동 생성</strong>.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">콘텐츠 작성 업무 최소화, 고객 대상 <strong>정기 관계 유지</strong>.</span></div>
+              </div>
+            </div></div></div>
           </article>
         </div>
       </div>
