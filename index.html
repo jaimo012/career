@@ -83,6 +83,7 @@
 
     .container { width: min(100% - 2.5rem, var(--container)); margin-inline: auto; }
     .mono { font-family: var(--font-mono); }
+    .hl { color: var(--color-accent); font-weight: 700; }  /* 본문 흐름 속 핵심 수치 강조 (Pretendard) */
 
     /* 섹션 공통 */
     .section { padding: clamp(3.5rem, 9vw, 6.5rem) 0; }
@@ -212,7 +213,7 @@
     .metric__sub { font-size: .85rem; color: var(--color-faint); }
     .metrics__strip { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; justify-content: center; color: var(--color-muted); font-size: .9rem; }
     .metrics__strip span { display: inline-flex; align-items: center; gap: .45rem; }
-    .metrics__strip b { font-family: var(--font-mono); color: var(--color-accent-dk); font-weight: 700; }
+    .metrics__strip b { color: var(--color-accent-dk); font-weight: 700; }
     @media (min-width: 720px) { .metrics__grid { grid-template-columns: repeat(4, 1fr); } }
 
     /* ============================================================
@@ -285,7 +286,6 @@
     .pac__item--result .pac__k { background: var(--color-accent); }
     .pac__v { color: var(--color-muted); font-size: .96rem; }
     .pac__v strong { color: var(--color-text); font-weight: 700; }
-    .pac__v .mono { color: var(--color-accent); font-weight: 700; }
     .repo-link { display: inline-flex; align-items: center; gap: .4rem; font-family: var(--font-mono); font-size: .85rem; color: var(--color-accent); font-weight: 500; margin-top: .2rem; border-bottom: 1px solid var(--color-accent-line); padding-bottom: 1px; }
     .repo-link:hover { border-bottom-color: var(--color-accent); }
     .repo-link svg { width: 1rem; height: 1rem; }
@@ -310,7 +310,6 @@
     .job__dur { color: var(--color-accent-dk); font-weight: 700; }
     .job__desc { display: block; color: var(--color-muted); font-size: .94rem; margin-top: .5rem; }
     .job__desc b { color: var(--color-text); }
-    .job__desc .mono { font-family: var(--font-mono); color: var(--color-accent); font-weight: 700; }
     .job__chev { width: 2rem; height: 2rem; align-self: center; border-radius: 50%; background: var(--color-accent-soft); color: var(--color-accent); display: grid; place-items: center; transition: transform .3s ease, background .2s ease; }
     .job__chev svg { width: 1.05rem; height: 1.05rem; }
     .job.is-open .job__chev { transform: rotate(135deg); background: var(--color-accent); color: var(--color-white); }
@@ -325,7 +324,6 @@
     .job__list li { position: relative; padding-left: 1.05rem; color: var(--color-muted); font-size: .92rem; line-height: 1.55; }
     .job__list li::before { content: ""; position: absolute; left: 0; top: .58em; width: .34rem; height: .34rem; border-radius: 50%; background: var(--color-accent); }
     .job__list li b { color: var(--color-text); font-weight: 700; }
-    .job__list li .mono { font-family: var(--font-mono); color: var(--color-accent); font-weight: 700; }
     .job__list--result li::before { background: var(--color-accent-dk); }
     .job__src { font-family: var(--font-mono); font-size: .67rem; color: var(--color-accent-dk); background: var(--color-accent-soft); border: 1px solid var(--color-accent-line); padding: .05rem .4rem; border-radius: 4px; white-space: nowrap; }
 
@@ -354,7 +352,7 @@
     .award__thumb:hover::after { opacity: 1; }
     .award__t { font-weight: 700; font-size: .92rem; line-height: 1.35; }
     .award__o { color: var(--color-muted); font-size: .82rem; }
-    .award__o .mono { font-family: var(--font-mono); font-size: .72rem; color: var(--color-faint); }
+    .award__o .hl { font-size: .72rem; color: var(--color-faint); font-weight: 400; }
     .research-line { margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--color-line-soft); display: grid; gap: .5rem; }
     .research-line .r { display: grid; grid-template-columns: auto 1fr; gap: .7rem; font-size: .9rem; color: var(--color-muted); }
     .research-line .r .tag { font-family: var(--font-mono); font-size: .68rem; font-weight: 700; color: var(--color-accent-dk); background: var(--color-accent-soft); padding: .15rem .5rem; border-radius: 5px; height: fit-content; white-space: nowrap; }
@@ -592,7 +590,7 @@
               <div class="pac">
                 <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">5년간 쌓인 약 <strong>7,000건의 비정형 이력서</strong>가 DB 없이 분산돼 검색·활용이 어려웠고, 고객사 JD와 후보자의 적합도를 사람이 일일이 검토하는 데 건당 1시간 가까이 들었다.</span></div>
                 <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">Gemini API와 Apps Script로 7,000건을 <strong>정형 DB로 전환</strong>하고 신규 이력서를 자동 분석·적재했다. JD가 들어오면 후보자 적합도 리포트를 자동 생성해 담당자에게 회신한다.</span></div>
-                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">7,000건을 <span class="mono">3일 만에 DB화</span>하고 월 100건 이상을 실시간 처리한다. 적합도 검증을 <span class="mono">건당 60분에서 5분으로(약 90%↓)</span> 줄였고, 사내 <strong>정식 제품으로 전환</strong>됐다.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">7,000건을 <span class="hl">3일 만에 DB화</span>하고 월 100건 이상을 실시간 처리한다. 적합도 검증을 <span class="hl">건당 60분에서 5분으로(약 90%↓)</span> 줄였고, 사내 <strong>정식 제품으로 전환</strong>됐다.</span></div>
               </div>
             </div></div></div>
           </article>
@@ -638,7 +636,7 @@
               <div class="pac">
                 <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">콜드메일 전환율이 낮아 대규모 타겟 리드 확보가 필요했지만, 사람이 수기로 모으기엔 너무 손이 많이 갔다.</span></div>
                 <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">파이썬·셀레늄 크롤러를 클라우드에 배포해, 채용 공고 기반의 잠재 고객 리드를 매일 자동 수집하고 시트에 적재한다.</span></div>
-                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">매일 30건 내외, <span class="mono">연 1,000건 이상</span>의 신규 리드를 확보했다. 적시성 높은 아웃바운드 영업으로 <strong>연 30억 규모 신규 계약 파이프라인</strong> 창출에 기여했다.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">매일 30건 내외, <span class="hl">연 1,000건 이상</span>의 신규 리드를 확보했다. 적시성 높은 아웃바운드 영업으로 <strong>연 30억 규모 신규 계약 파이프라인</strong> 창출에 기여했다.</span></div>
               </div>
             </div></div></div>
           </article>
@@ -661,7 +659,7 @@
               <div class="pac">
                 <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">대량 발송의 효율과 1:1 개인화 메시지의 높은 응답률을 동시에 잡아야 했다.</span></div>
                 <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">시트의 잠재 고객 정보를 Gemini가 분석해 <strong>1:1 맞춤 세일즈 메일 초안</strong>을 자동 생성하고, Apps Script로 대량 발송까지 자동화했다.</span></div>
-                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">메일 작성·발송 시간을 <span class="mono">건당 2시간에서 1분으로(약 99%↓)</span> 줄였다. 타겟팅된 메시지로 콜드메일 응답률을 끌어올렸다.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">메일 작성·발송 시간을 <span class="hl">건당 2시간에서 1분으로(약 99%↓)</span> 줄였다. 타겟팅된 메시지로 콜드메일 응답률을 끌어올렸다.</span></div>
               </div>
             </div></div></div>
           </article>
@@ -684,7 +682,7 @@
               <div class="pac">
                 <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">수시로 생기는 영업 통화를 수동으로 기록하기 어려워 고객 커뮤니케이션 이력이 파편화됐다.</span></div>
                 <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">자동 동기화된 통화 녹음을 STT로 변환하고, Gemini가 업무 관련성을 판별해 유의미한 통화만 요약, <strong>CRM(시트)에 자동 기록</strong>한다.</span></div>
-                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v"><span class="mono">월 100건 이상</span>의 통화를 빠짐없이 데이터화했다. 담당자가 바뀌어도 즉시 히스토리를 파악해 인수인계 공백을 없앴다.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v"><span class="hl">월 100건 이상</span>의 통화를 빠짐없이 데이터화했다. 담당자가 바뀌어도 즉시 히스토리를 파악해 인수인계 공백을 없앴다.</span></div>
               </div>
             </div></div></div>
           </article>
@@ -707,7 +705,7 @@
               <div class="pac">
                 <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">영업 미팅 후 회의록 작성에 건당 30~60분이 들어 정작 핵심 영업 활동에 집중하기 어려웠다.</span></div>
                 <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">미팅 녹음을 Naver STT로 변환한 뒤 Gemini가 <strong>핵심 안건과 액션 아이템 중심의 회의록</strong>을 자동 생성·공유한다.</span></div>
-                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">회의록 작성·공유 시간을 <span class="mono">80% 이상 절감</span>했다(건당 30~60분에서 10분). 영업 히스토리를 누락 없이 기록하고 팀 공유를 활성화했다.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">회의록 작성·공유 시간을 <span class="hl">80% 이상 절감</span>했다(건당 30~60분에서 10분). 영업 히스토리를 누락 없이 기록하고 팀 공유를 활성화했다.</span></div>
               </div>
             </div></div></div>
           </article>
@@ -753,7 +751,7 @@
               <div class="pac">
                 <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">영업 담당자의 외근·회의로 고객 의뢰 메일에 응답이 늦거나 누락될 위험이 있었다.</span></div>
                 <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">Gmail로 들어오는 의뢰를 Gemini가 실시간 분석해, 정보가 부족하면 자동 회신하고 완료된 의뢰는 <strong>시트·슬랙으로 즉시 연동</strong>한다.</span></div>
-                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v"><span class="mono">의뢰 누락률 0%</span>를 달성하고, 평균 응답 시간을 1시간 이상에서 5분 이내로 줄였다.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v"><span class="hl">의뢰 누락률 0%</span>를 달성하고, 평균 응답 시간을 1시간 이상에서 5분 이내로 줄였다.</span></div>
               </div>
             </div></div></div>
           </article>
@@ -776,7 +774,7 @@
               <div class="pac">
                 <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">고객 관계 유지를 위한 정기 콘텐츠 수요는 높았지만, 전담 리소스가 없어 미뤄져 있었다.</span></div>
                 <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">Naver API와 BeautifulSoup로 최신 뉴스를 수집·분석하고, Gemini가 핵심 아젠다를 도출해 <strong>맞춤형 뉴스레터 초안</strong>을 자동 생성한다.</span></div>
-                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">한 달 이상 걸리던 큐레이션·초안 작성을 <span class="mono">주 1시간 이내</span>로 줄였다. 정기 인사이트 발송으로 업계 전문성을 각인했다.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">한 달 이상 걸리던 큐레이션·초안 작성을 <span class="hl">주 1시간 이내</span>로 줄였다. 정기 인사이트 발송으로 업계 전문성을 각인했다.</span></div>
               </div>
             </div></div></div>
           </article>
@@ -799,7 +797,7 @@
               <div class="pac">
                 <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">크리에이터의 콘텐츠 제작에서 자료 수집과 초안 작성에 시간이 너무 많이 들었다.</span></div>
                 <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">드라이브에 올린 이미지를 <strong>Gemini 멀티모달</strong>로 분석하고 Naver API 정보와 결합해, 인스타그램 피드 텍스트와 이미지 큐레이션을 자동 생성한다.</span></div>
-                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">자료 조사부터 초안까지 걸리던 시간을 <span class="mono">건당 3시간에서 10분으로(약 94%↓)</span> 줄였다. 크리에이터가 창작 자체에 집중할 수 있게 했다.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">자료 조사부터 초안까지 걸리던 시간을 <span class="hl">건당 3시간에서 10분으로(약 94%↓)</span> 줄였다. 크리에이터가 창작 자체에 집중할 수 있게 했다.</span></div>
               </div>
             </div></div></div>
           </article>
@@ -822,7 +820,7 @@
               <div class="pac">
                 <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">1만 페이지가 넘는 영문 기술 매뉴얼을 번역해야 했는데, 전문 번역은 비용 약 1억 원에 기간 3개월이 들어 예산·일정 확보가 어려웠다.</span></div>
                 <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">파이썬(python-docx)으로 1만 페이지 분량의 문서를 자동 분할·병합하고, <strong>원본 서식을 그대로 보존</strong>한 채 텍스트만 Gemini로 번역·교체하는 병렬 처리 시스템을 만들었다.</span></div>
-                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">작업 기간 <span class="mono">3일</span>, API 비용 약 50만 원에 마쳤다. 기존 견적 대비 <strong>비용 99%·기간 90% 이상 절감</strong>했다.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">작업 기간 <span class="hl">3일</span>, API 비용 약 50만 원에 마쳤다. 기존 견적 대비 <strong>비용 99%·기간 90% 이상 절감</strong>했다.</span></div>
               </div>
             </div></div></div>
           </article>
@@ -834,7 +832,7 @@
     <section class="section" id="career">
       <div class="container">
         <span class="section__label">Experience</span>
-        <h2 class="section__title">경력 <span class="mono" id="careerTotalTitle" style="font-size:.55em; color:var(--color-faint); font-weight:500;">총 12년 3개월</span></h2>
+        <h2 class="section__title">경력 <span id="careerTotalTitle" style="font-size:.55em; color:var(--color-faint); font-weight:500;">총 12년 8개월</span></h2>
         <div class="career">
           <article class="job job--lead is-open">
             <button class="job__head" aria-expanded="true" aria-controls="job-body-1">
@@ -845,7 +843,7 @@
                   <span class="job__role">엔터프라이즈 사업개발 · 비즈니스 기획 팀장</span>
                   <span class="job__period" data-start="2023.04" data-end="present">2023.04 ~ 현재</span>
                 </span>
-                <span class="job__desc">국내 1위 프리랜서 플랫폼의 B2B 전담 조직. 엔터프라이즈 IT 아웃소싱 사업을 맨바닥에서 설계해 <span class="mono">연 80억</span> 신규 수주로 성장 견인(<b>목표 114% 초과</b>).</span>
+                <span class="job__desc">국내 1위 프리랜서 플랫폼의 B2B 전담 조직. 엔터프라이즈 IT 아웃소싱 사업을 맨바닥에서 설계해 <span class="hl">연 80억</span> 신규 수주로 성장 견인(<b>목표 114% 초과</b>).</span>
               </span>
               <span class="job__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
             </button>
@@ -860,7 +858,7 @@
               </ul>
               <p class="job__sub">주요 성과</p>
               <ul class="job__list job__list--result">
-                <li>초기 단계에서 <span class="mono">연 80억</span> 규모 신규 수주로 성장 견인, <b>연간 목표 114% 초과 달성</b></li>
+                <li>초기 단계에서 <span class="hl">연 80억</span> 규모 신규 수주로 성장 견인, <b>연간 목표 114% 초과 달성</b></li>
                 <li>직접 발굴한 대형 고객사 기준 <b>팀 내 계약금액 기여도 90% 이상</b></li>
                 <li>경쟁 입찰을 통해 <b>최상위 등급 전략 파트너사로 선정</b>, 경쟁사 진입장벽 구축</li>
                 <li>직접 개발한 AI 자동화 도입으로 반복 업무를 제거하고 리소스를 고부가가치 업무로 재배치</li>
@@ -877,7 +875,7 @@
                   <span class="job__role">스타트업 사업개발 · 채널 기획 팀장</span>
                   <span class="job__period" data-start="2022.04" data-end="2023.03">2022.04 ~ 2023.03</span>
                 </span>
-                <span class="job__desc">초기 창업자 대상 IT 아웃소싱 비즈니스의 시장 진입 전략·신규 채널 기획. 실적 부진 구간을 1년 만에 <span class="mono">월 3억(10×)</span>으로 반전.</span>
+                <span class="job__desc">초기 창업자 대상 IT 아웃소싱 비즈니스의 시장 진입 전략·신규 채널 기획. 실적 부진 구간을 1년 만에 <span class="hl">월 3억(10×)</span>으로 반전.</span>
               </span>
               <span class="job__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
             </button>
@@ -890,7 +888,7 @@
               </ul>
               <p class="job__sub">주요 성과</p>
               <ul class="job__list job__list--result">
-                <li>실적 부진 구간(월 3천만원)을 1년 만에 <span class="mono">월 3억 규모(10배)</span>로 성장</li>
+                <li>실적 부진 구간(월 3천만원)을 1년 만에 <span class="hl">월 3억 규모(10배)</span>로 성장</li>
                 <li><b>3,000건 이상 자체 데이터베이스</b>를 구축해 인바운드 의존 없는 자생적 영업 파이프라인 완성</li>
               </ul>
             </div></div></div></div>
@@ -929,14 +927,14 @@
                   <span class="job__role">지능물류연구소 기획팀 대리</span>
                   <span class="job__period" data-start="2018.09" data-end="2019.12">2018.09 ~ 2019.12</span>
                 </span>
-                <span class="job__desc">물류에 AI를 접목한 신규 서비스를 기획부터 실증까지 주도. 정부 R&amp;D <span class="mono">13.4억</span> 사업비 확보.</span>
+                <span class="job__desc">물류에 AI를 접목한 신규 서비스를 기획부터 실증까지 주도. 정부 R&amp;D <span class="hl">13.4억</span> 사업비 확보.</span>
               </span>
               <span class="job__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
             </button>
             <div class="job__reveal"><div class="job__bodywrap"><div class="job__body"><div class="job__body-inner">
               <p class="job__sub">주요 활동 및 성과</p>
               <ul class="job__list">
-                <li>정부 R&amp;D 과제 4건 수주로 <span class="mono">13.4억</span> 사업비 확보. AI 반품 6.42억, AI 미스터 센터장 4.0억, KSB 반품물류 1.5억, IoT 미세먼지 1.49억 <span class="job__src">과기정통부 · 산업부 · 국가과학기술연구회</span></li>
+                <li>정부 R&amp;D 과제 4건 수주로 <span class="hl">13.4억</span> 사업비 확보. AI 반품 6.42억, AI 미스터 센터장 4.0억, KSB 반품물류 1.5억, IoT 미세먼지 1.49억 <span class="job__src">과기정통부 · 산업부 · 국가과학기술연구회</span></li>
                 <li>물류창고 인력 최적화 문제에서 출발해, 단순 물동량 예측을 넘어 딥러닝 수요예측에서 현장 인력 배치 최적화로 <b>사업 모델을 구체화·타당성 검증</b></li>
                 <li>AI 수요예측·인력배치 시스템을 기획·실증해 <b>예측 오차율을 ±10%에서 ±3%로 약 70% 개선</b></li>
                 <li>국가 연구기관의 인공지능 프레임워크를 선제 도입, 관련 <b>공모전 2년 연속 최우수상(2018·2019)</b></li>
@@ -1024,7 +1022,7 @@
                 </div>
                 <figcaption>
                   <p class="award__t">2019 KSB 인공지능 프레임워크 활용 공모전 최우수상</p>
-                  <p class="award__o">국가과학기술연구회 <span class="mono">2019.10</span></p>
+                  <p class="award__o">국가과학기술연구회 <span class="hl">2019.10</span></p>
                 </figcaption>
               </figure>
               <figure class="award">
@@ -1033,7 +1031,7 @@
                 </div>
                 <figcaption>
                   <p class="award__t">2018 KSB 인공지능 프레임워크 활용 공모전 최우수상</p>
-                  <p class="award__o">한국전자통신연구원 <span class="mono">2018.10</span></p>
+                  <p class="award__o">한국전자통신연구원 <span class="hl">2018.10</span></p>
                 </figcaption>
               </figure>
               <figure class="award">
@@ -1042,7 +1040,7 @@
                 </div>
                 <figcaption>
                   <p class="award__t">고려대학교 경상대학 학술제 최우수상</p>
-                  <p class="award__o">고려대학교 경상대학 <span class="mono">2012.11</span></p>
+                  <p class="award__o">고려대학교 경상대학 <span class="hl">2012.11</span></p>
                 </figcaption>
               </figure>
             </div>
