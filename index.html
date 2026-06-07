@@ -561,14 +561,14 @@
     <section class="section" id="projects" style="background:var(--color-surface); border-block:1px solid var(--color-line);">
       <div class="container">
         <span class="section__label">Selected Work</span>
-        <h2 class="section__title">직접 기획하고, 직접 개발한 AI 서비스</h2>
-        <p class="section__lead">"이 업무를 사람이 꼭 해야 하는가"를 기준으로 업무를 분해하고, 파이썬과 AI로 직접 시제품을 만들어 사내에 정착시켰습니다. 아래 분야 버튼으로 모아 볼 수 있습니다.</p>
+        <h2 class="section__title">직접 기획하고, 직접 개발한 AI 서비스·자동화</h2>
+        <p class="section__lead">"이 업무를 사람이 꼭 해야 하는가"를 기준으로 업무를 분해하고, 파이썬과 AI로 직접 시제품을 만들어 사내 업무부터 개인 프로젝트까지 실제로 운영해 왔습니다. 아래 분야 버튼으로 모아 볼 수 있습니다.</p>
         <div class="filterbar" role="group" aria-label="분야별 필터">
-          <button class="filterbtn is-active" type="button" data-filter="all" aria-pressed="true">전체 <span class="filterbtn__n">11</span></button>
+          <button class="filterbtn is-active" type="button" data-filter="all" aria-pressed="true">전체 <span class="filterbtn__n">13</span></button>
           <button class="filterbtn" type="button" data-filter="hr" aria-pressed="false">HR <span class="filterbtn__n">1</span></button>
           <button class="filterbtn" type="button" data-filter="sales" aria-pressed="false">영업 <span class="filterbtn__n">6</span></button>
           <button class="filterbtn" type="button" data-filter="marketing" aria-pressed="false">마케팅 <span class="filterbtn__n">2</span></button>
-          <button class="filterbtn" type="button" data-filter="etc" aria-pressed="false">기타 <span class="filterbtn__n">2</span></button>
+          <button class="filterbtn" type="button" data-filter="etc" aria-pressed="false">기타 <span class="filterbtn__n">4</span></button>
         </div>
 
         <div class="accordion">
@@ -821,6 +821,52 @@
                 <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">1만 페이지가 넘는 영문 기술 매뉴얼을 번역해야 했는데, 전문 번역은 비용 약 1억 원에 기간 3개월이 들어 예산·일정 확보가 어려웠다.</span></div>
                 <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">파이썬(python-docx)으로 1만 페이지 분량의 문서를 자동 분할·병합하고, <strong>원본 서식을 그대로 보존</strong>한 채 텍스트만 Gemini로 번역·교체하는 병렬 처리 시스템을 만들었다.</span></div>
                 <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">작업 기간 <span class="hl">3일</span>, API 비용 약 50만 원에 마쳤다. 기존 견적 대비 <strong>비용 99%·기간 90% 이상 절감</strong>했다.</span></div>
+              </div>
+            </div></div></div>
+          </article>
+
+          <!-- 12 네이버 부동산 매물 알리미 -->
+          <article class="proj" data-cat="etc">
+            <button class="proj__head" aria-expanded="false" aria-controls="proj-body-12">
+              <span class="proj__no">12</span>
+              <span class="proj__heading">
+                <span class="proj__titrow">
+                  <span class="proj__title">네이버 부동산 매물 알리미</span>
+                  <span class="proj__cat">개인 프로젝트</span>
+                </span>
+                <span class="proj__tag">Python · Playwright · Gemini · 공공데이터 API</span>
+              </span>
+              <span class="proj__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="proj__reveal"><div class="proj__bodywrap"><div class="proj__body" id="proj-body-12">
+              <p class="proj__role">역할 · 기획 → 개발 → 운영 전 과정 단독 수행</p>
+              <div class="pac">
+                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">급매물은 등록 직후 빠지기 때문에 발견 즉시 연락해야 하지만, 수동 추적으로는 놓치기 일쑤였다. 게다가 네이버 부동산은 <strong>크롤링 차단이 강해</strong> 일반적인 방법으로는 매물 데이터 수집 자체가 막혔다.</span></div>
+                <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">Playwright로 <strong>봇 탐지를 우회</strong>(토큰 캡처·페이지 구동 방식 fetch)해 12개 지역 매물을 하루 2회 수집. <strong>국토부 실거래가 OpenAPI와 카카오 주소 API를 haversine 공간 매칭(≤100m)으로 연결</strong>해 단지와 실거래를 자동 매핑하고, 급매 3종(절대가·가격인하·실거래가 대비)을 판정. 단지별로 Gemini가 진단 요약을 만들어 Slack 카드로 발송한다.</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">급매 후보를 발견 즉시 Slack으로 받아 중개사에게 바로 연락하는 환경을 구축했다. 가격 변동 없는 매물 fetch를 건너뛰어 수집 주기를 <span class="hl">3시간에서 30분으로</span> 단축했고, 자동화 테스트 1,700여 건으로 안정화했다.</span></div>
+              </div>
+            </div></div></div>
+          </article>
+
+          <!-- 13 BILZ 영수증 수집 자동화 -->
+          <article class="proj" data-cat="etc">
+            <button class="proj__head" aria-expanded="false" aria-controls="proj-body-13">
+              <span class="proj__no">13</span>
+              <span class="proj__heading">
+                <span class="proj__titrow">
+                  <span class="proj__title">BILZ 영수증 수집 자동화</span>
+                  <span class="proj__cat">개인 프로젝트</span>
+                </span>
+                <span class="proj__tag">Kotlin · Jetpack Compose · CameraX · Drive API</span>
+              </span>
+              <span class="proj__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+            </button>
+            <div class="proj__reveal"><div class="proj__bodywrap"><div class="proj__body" id="proj-body-13">
+              <p class="proj__role">역할 · 기획 → 개발 단독 수행 (Android 앱)</p>
+              <div class="pac">
+                <div class="pac__item"><span class="pac__k">문제</span><span class="pac__v">영수증을 일일이 촬영하고 이름을 붙여 정리·업로드하는 과정이 번거롭고 자주 누락됐다.</span></div>
+                <div class="pac__item"><span class="pac__k">접근</span><span class="pac__v">촬영하면 이미지 크롭, <strong>날짜·용도 기반 파일명 자동 생성</strong>, 로컬 저장, Google Drive 업로드까지 한 흐름으로 처리하는 Android 앱을 직접 개발(Kotlin·Jetpack Compose·CameraX).</span></div>
+                <div class="pac__item pac__item--result"><span class="pac__k">결과</span><span class="pac__v">촬영에서 업로드, 다음 촬영까지 <strong>끊김 없이 반복</strong>돼 영수증 정리·보관을 현장에서 즉시 끝낸다.</span></div>
               </div>
             </div></div></div>
           </article>
