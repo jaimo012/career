@@ -336,10 +336,16 @@
     .cred__h { font-family: var(--font-mono); font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-accent-dk); margin-bottom: 1.1rem; display: flex; align-items: center; gap: .5rem; }
     .cred__h svg { width: 1.05rem; height: 1.05rem; color: var(--color-accent); }
     .edu-item, .lic-item { padding: .55rem 0; border-top: 1px solid var(--color-line-soft); }
+    .edu-item { display: flex; gap: .8rem; align-items: flex-start; }
     .edu-item:first-of-type, .lic-item:first-of-type { border-top: 0; padding-top: 0; }
+    .edu-logo { width: 2.7rem; height: 2.7rem; flex: none; border-radius: 8px; background: var(--color-white); border: 1px solid var(--color-line); display: grid; place-items: center; padding: .3rem; }
+    .edu-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .edu-body { flex: 1; min-width: 0; }
     .edu-item .t, .lic-item .t { font-weight: 700; font-size: .98rem; }
     .edu-item .s { color: var(--color-muted); font-size: .88rem; }
     .edu-item .y, .lic-item .y { font-family: var(--font-mono); font-size: .72rem; color: var(--color-faint); }
+    .edu-thesis { margin-top: .45rem; font-size: .85rem; color: var(--color-muted); line-height: 1.5; }
+    .edu-thesis b { font-family: var(--font-mono); font-size: .66rem; font-weight: 700; color: var(--color-accent-dk); background: var(--color-accent-soft); border: 1px solid var(--color-accent-line); padding: .08rem .4rem; border-radius: 4px; margin-right: .4rem; white-space: nowrap; }
     .lic-item { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
     /* 수상 (썸네일 → 라이트박스) */
     .awards { display: grid; gap: 1rem; }
@@ -1052,12 +1058,19 @@
               학력
             </h3>
             <div class="edu-item">
-              <p class="t">서울시립대학교 경영대학원 <span class="y">2020.03 ~ 2022.02</span></p>
-              <p class="s">경영학 석사(MBA) / 경영과학(오퍼레이션 리서치)</p>
+              <div class="edu-logo"><img src="images/logos/uos.png" alt="서울시립대학교 CI" /></div>
+              <div class="edu-body">
+                <p class="t">서울시립대학교 경영대학원 <span class="y">2020.03 ~ 2022.02</span></p>
+                <p class="s">경영학 석사(MBA) / 경영과학(오퍼레이션 리서치)</p>
+                <p class="edu-thesis"><b>졸업논문 대체 프로젝트</b>리빙랩(Living Lab)을 활용한 중소기업의 R&amp;D 프로세스 개선방안</p>
+              </div>
             </div>
             <div class="edu-item">
-              <p class="t">고려대학교 (세종) <span class="y">2008.03 ~ 2015.08</span></p>
-              <p class="s">경제학(심화) · 경영학(부전공)</p>
+              <div class="edu-logo"><img src="images/logos/koreauniv.png" alt="고려대학교 CI" /></div>
+              <div class="edu-body">
+                <p class="t">고려대학교 (세종) <span class="y">2008.03 ~ 2015.08</span></p>
+                <p class="s">경제학(심화) · 경영학(부전공)</p>
+              </div>
             </div>
           </div>
 
