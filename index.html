@@ -312,6 +312,7 @@
     .job__co { font-weight: 800; font-size: 1.08rem; letter-spacing: -0.02em; }
     .job__role { color: var(--color-accent-dk); font-weight: 700; font-size: .95rem; }
     .job__period { font-family: var(--font-mono); font-size: .76rem; color: var(--color-faint); margin-left: auto; white-space: nowrap; }
+    .job__dur { color: var(--color-accent-dk); font-weight: 700; }
     .job__desc { display: block; color: var(--color-muted); font-size: .94rem; margin-top: .5rem; }
     .job__desc b { color: var(--color-text); }
     .job__desc .mono { font-family: var(--font-mono); color: var(--color-accent); font-weight: 700; }
@@ -405,6 +406,9 @@
     .footer__bottom a:hover { color: var(--color-white); border-bottom-color: rgba(255,255,255,.4); }
     .footer__dl { display: inline-flex; align-items: center; gap: .45rem; color: var(--color-white); font-weight: 600; }
     .footer__dl svg { width: .95rem; height: .95rem; }
+    .footer__book { margin-top: 1.6rem; background: var(--color-white); color: var(--color-accent-dk); box-shadow: 0 8px 22px rgba(0,0,0,.22); }
+    .footer__book:hover { background: var(--color-accent); color: var(--color-white); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.28); }
+    .footer__book svg { width: 1.05rem; height: 1.05rem; }
 
     /* ============================================================
        라이트박스 (순수 JS, 라이브러리 없음)
@@ -442,6 +446,9 @@
         <a class="iconbtn" href="https://www.linkedin.com/in/alpha9001" target="_blank" rel="noopener" aria-label="링크드인 프로필 (새 창)">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18V9.99H5.67V18h2.67zM7 8.8a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zM18.34 18v-4.4c0-2.36-1.26-3.46-2.94-3.46-1.36 0-1.96.75-2.3 1.27V9.99h-2.66c.04.75 0 8.01 0 8.01h2.66v-4.47c0-.24.02-.48.09-.65.19-.48.63-.97 1.36-.97.96 0 1.35.73 1.35 1.8V18h2.74z"/></svg>
         </a>
+        <a class="iconbtn" href="https://calendar.app.google/5F69R9hoC2gtMnq97" target="_blank" rel="noopener" aria-label="미팅 예약하기 (새 창)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </a>
         <a class="btn-pdf" href="./이재모_경력기술서_AI서비스기획자.pdf" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
           경력기술서<span class="btn-pdf__long"> PDF</span>
@@ -467,7 +474,11 @@
             최근에는 LLM 기반 서비스를 직접 기획·개발해 사내 정식 제품으로 출시했습니다.
           </p>
           <div class="hero__cta">
-            <a class="btn btn--primary" href="#projects">
+            <a class="btn btn--primary" href="https://calendar.app.google/5F69R9hoC2gtMnq97" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              미팅 예약하기
+            </a>
+            <a class="btn btn--ghost" href="#projects">
               대표 프로젝트 보기
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
@@ -513,7 +524,7 @@
           </li>
         </ul>
         <div class="metrics__strip">
-          <span><b>12년 3개월</b> 정책·연구개발·사업개발</span>
+          <span><b id="careerTotalStrip">12년 3개월</b> 정책·연구개발·사업개발</span>
           <span><b>44건</b> 정책·사업 타당성 컨설팅</span>
           <span><b>10×</b> 창업지원 매출 성장 (월 3천→3억)</span>
           <span><b>3,000건+</b> 자체 영업 데이터베이스</span>
@@ -664,7 +675,7 @@
     <section class="section" id="career">
       <div class="container">
         <span class="section__label">Experience</span>
-        <h2 class="section__title">경력 <span class="mono" style="font-size:.55em; color:var(--color-faint); font-weight:500;">총 12년 3개월</span></h2>
+        <h2 class="section__title">경력 <span class="mono" id="careerTotalTitle" style="font-size:.55em; color:var(--color-faint); font-weight:500;">총 12년 3개월</span></h2>
         <div class="career">
           <article class="job job--lead is-open">
             <button class="job__head" aria-expanded="true" aria-controls="job-body-1">
@@ -673,7 +684,7 @@
                 <span class="job__top">
                   <span class="job__co">크몽</span>
                   <span class="job__role">엔터프라이즈 사업개발 · 비즈니스 기획 팀장</span>
-                  <span class="job__period">2023.04 ~ 현재</span>
+                  <span class="job__period" data-start="2023.04" data-end="present">2023.04 ~ 현재</span>
                 </span>
                 <span class="job__desc">국내 1위 프리랜서 플랫폼의 B2B 전담 조직. 엔터프라이즈 IT 아웃소싱 사업을 맨바닥에서 설계해 <span class="mono">연 80억</span> 신규 수주로 성장 견인(<b>목표 114% 초과</b>).</span>
               </span>
@@ -705,7 +716,7 @@
                 <span class="job__top">
                   <span class="job__co">크몽</span>
                   <span class="job__role">스타트업 사업개발 · 채널 기획 팀장</span>
-                  <span class="job__period">2022.04 ~ 2023.03</span>
+                  <span class="job__period" data-start="2022.04" data-end="2023.03">2022.04 ~ 2023.03</span>
                 </span>
                 <span class="job__desc">초기 창업자 대상 IT 아웃소싱 비즈니스의 시장 진입 전략·신규 채널 기획. 실적 부진 구간을 1년 만에 <span class="mono">월 3억(10×)</span>으로 반전.</span>
               </span>
@@ -733,7 +744,7 @@
                 <span class="job__top">
                   <span class="job__co">한국산업인덱스</span>
                   <span class="job__role">정책컨설팅 책임연구원</span>
-                  <span class="job__period">2020.01 ~ 2022.03</span>
+                  <span class="job__period" data-start="2020.01" data-end="2022.03">2020.01 ~ 2022.03</span>
                 </span>
                 <span class="job__desc">중소기업 연구개발 지원체계의 디지털 전환을 위한 신규 정부사업 기획·타당성 분석.</span>
               </span>
@@ -757,7 +768,7 @@
                 <span class="job__top">
                   <span class="job__co">로지포커스</span>
                   <span class="job__role">지능물류연구소 기획팀 대리</span>
-                  <span class="job__period">2018.09 ~ 2019.12</span>
+                  <span class="job__period" data-start="2018.09" data-end="2019.12">2018.09 ~ 2019.12</span>
                 </span>
                 <span class="job__desc">물류에 AI를 접목한 신규 서비스를 기획부터 실증까지 주도. 정부 R&amp;D <span class="mono">13.4억</span> 사업비 확보.</span>
               </span>
@@ -781,7 +792,7 @@
                 <span class="job__top">
                   <span class="job__co">한국산업인덱스</span>
                   <span class="job__role">정책컨설팅 선임연구원</span>
-                  <span class="job__period">2013.07 ~ 2018.04</span>
+                  <span class="job__period" data-start="2013.07" data-end="2018.04">2013.07 ~ 2018.04</span>
                 </span>
                 <span class="job__desc">정부 산업·R&amp;D 정책 타당성 조사·성과분석 컨설팅 <b>총 44건</b>. 국가혁신클러스터를 <b>100대 국정과제로 채택</b>.</span>
               </span>
@@ -963,6 +974,11 @@
       <p class="footer__cta">사람과 AI가 함께 일하는 구조를 설계합니다.</p>
       <p class="footer__sub">정책 기획 · AI 연구개발 · B2B 사업개발을 잇는 기획자. 매칭·제안은 편하게 연락 주세요.</p>
 
+      <a class="btn footer__book" href="https://calendar.app.google/5F69R9hoC2gtMnq97" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        미팅 예약하기
+      </a>
+
       <div class="footer__contacts">
         <a class="fcontact" href="mailto:jaimo012@naver.com">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
@@ -1021,6 +1037,35 @@
       }
       bindAccordion('.accordion', '.proj__head', '.proj');
       bindAccordion('.career', '.job__head', '.job');
+
+      /* ---- 경력 기간 자동 계산 (오늘 날짜 기준, 입사월~퇴사월 양끝 포함) ---- */
+      (function () {
+        function monthsOf(start, end) {
+          var s = start.split('.'), sy = +s[0], sm = +s[1], ey, em;
+          if (end === 'present') { var d = new Date(); ey = d.getFullYear(); em = d.getMonth() + 1; }
+          else { var e = end.split('.'); ey = +e[0]; em = +e[1]; }
+          return (ey - sy) * 12 + (em - sm) + 1;
+        }
+        function fmt(m) {
+          var y = Math.floor(m / 12), mm = m % 12;
+          if (y && mm) return y + '년 ' + mm + '개월';
+          if (y) return y + '년';
+          return mm + '개월';
+        }
+        var total = 0;
+        document.querySelectorAll('.job__period[data-start]').forEach(function (el) {
+          var m = monthsOf(el.dataset.start, el.dataset.end);
+          if (m > 0) total += m;
+          var dur = document.createElement('span');
+          dur.className = 'job__dur';
+          dur.textContent = ' (' + fmt(m) + ')';
+          el.appendChild(dur);
+        });
+        var t1 = document.getElementById('careerTotalTitle');
+        if (t1) t1.textContent = '총 ' + fmt(total);
+        var t2 = document.getElementById('careerTotalStrip');
+        if (t2) t2.textContent = fmt(total);
+      })();
 
       /* ---- 라이트박스 (상장 확대) ---- */
       var lb = document.getElementById('lightbox');
