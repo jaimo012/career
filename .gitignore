@@ -19,3 +19,10 @@ Thumbs.db
 .DS_Store
 *.tmp
 *.tmp.jpg
+
+# 작업 로그 — 회사명·처우 협상 경과 포함. 이 레포는 PUBLIC. 절대 커밋 금지.
+DEVLOG.md
+DEVLOG_archive/
+
+# 내부 시사점·오류 카탈로그 (타 세션 인계용). 공개 의도 없음.
+HANDOFF_*.md
